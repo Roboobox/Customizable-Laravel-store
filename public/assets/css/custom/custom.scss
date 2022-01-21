@@ -1,29 +1,20 @@
 @import '../../scss/config/variables';
+//Input validation
+.invalid-feedback, .valid-feedback {
+    display: none;
+}
 input.invalid {
   border-color: #dc3545
 }
-.invalid-feedback {
-  color: #dc3545;
-  display: none;
+.invalid~.invalid-feedback, {
+    color: #dc3545;
+    display: block;
 }
-.success-feedback {
-  color: #62df62;
-  display: none;
-}
-
-#sign-in {
-  .success-feedback {
-    text-align: center;
-    padding-bottom: 15px;
-  }
+.valid~.valid-feedback {
+    color: #62df62;
+    display: block;
 }
 
-#sign-in, #sign-up {
-  .invalid-feedback.general {
-    text-align: center;
-    padding-bottom: 20px;
-  }
-}
 
 .product-wrapper .product-media img {
   height: 180px;

@@ -72,7 +72,7 @@
                         <ul class="widget-body">
                             <li><a href="#">Order history</a></li>
                             <li><a href="{{ route('account') }}">Account details</a></li>
-                            <li><a href="{{ route('signin') }}">Sign In</a></li>
+                            <li><a href="{{ route('auth') }}">Sign In</a></li>
                             <li><a href="{{ route('cart') }}">View cart</a></li>
                         </ul>
                     </div>

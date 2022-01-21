@@ -37,9 +37,9 @@ Route::get('/products', function () {
     return view('products');
 })->name("products");
 
-Route::get('/signin', function () {
-    return view('signup');
-})->name("signin");
+Route::get('/auth', function () {
+    return view('auth-page');
+})->name("auth")->middleware('guest');;
 
 Route::get('/about', function () {
     return view('about-us');
@@ -51,7 +51,7 @@ Route::get('/contact', function () {
 
 Route::get('/account', function () {
     return view('account');
-})->name("account");
+})->name("account")->middleware('auth');;
 
 Route::get('/coming-soon', function () {
     return view('welcome');
@@ -59,4 +59,10 @@ Route::get('/coming-soon', function () {
 
 Route::get('/login-popup', function () {
     return view('components.login-popup');
-})->name("login-popup");
+})->name("auth-popup")->middleware('guest');;
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

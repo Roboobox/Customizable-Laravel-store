@@ -1,28 +1,22 @@
 /*----------------------------------------
     Variables
 -----------------------------------------*/
+.invalid-feedback, .valid-feedback {
+  display: none;
+}
+
 input.invalid {
   border-color: #dc3545;
 }
 
-.invalid-feedback {
+.invalid ~ .invalid-feedback {
   color: #dc3545;
-  display: none;
+  display: block;
 }
 
-.success-feedback {
+.valid ~ .valid-feedback {
   color: #62df62;
-  display: none;
-}
-
-#sign-in .success-feedback {
-  text-align: center;
-  padding-bottom: 15px;
-}
-
-#sign-in .invalid-feedback.general, #sign-up .invalid-feedback.general {
-  text-align: center;
-  padding-bottom: 20px;
+  display: block;
 }
 
 .product-wrapper .product-media img {

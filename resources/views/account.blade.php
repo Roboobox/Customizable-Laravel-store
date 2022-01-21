@@ -28,7 +28,11 @@
                             <a href="#account-details" class="nav-link">Account details</a>
                         </li>
                         <li class="link-item">
-                            <a href="#">Logout</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();">Logout</a>
+                            </form>
                         </li>
                     </ul>
 
@@ -36,10 +40,11 @@
                         <div class="tab-pane active in" id="account-dashboard">
                             <p class="greeting">
                                 Hello
-                                <span class="text-dark font-weight-bold">John Doe</span>
-                                (not
-                                <span class="text-dark font-weight-bold">John Doe</span>?
-                                <a href="#" class="text-primary">Log out</a>)
+                                @if(Auth::user()->name && Auth::user()->surname)
+                                    <span class="text-dark font-weight-bold">{{ Auth::user()->name . " " . Auth::user()->surname }}</span>
+                                @elseif(Auth::user()->email)
+                                    <span class="text-dark font-weight-bold">{{ Auth::user()->email}}</span>
+                                @endif
                             </p>
 
                             <p class="mb-4">

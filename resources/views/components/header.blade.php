@@ -34,11 +34,14 @@
                 <!-- End of Dropdown Menu -->
                 <span class="divider d-lg-show"></span>
                 <a href="{{ route('contact') }}" class="d-lg-show">Contact Us</a>
-                <a href="{{ route('account') }}" class="d-lg-show">My Account</a>
-                <a href="{{ route('login-popup') }}" class="d-lg-show login sign-in"><i
-                        class="w-icon-account"></i>Sign In</a>
-                <span class="delimiter d-lg-show">/</span>
-                <a href="{{ route('login-popup') }}" class="ml-0 d-lg-show login register">Register</a>
+                @auth
+                    <a href="{{ route('account') }}" class="d-lg-show">My Account</a>
+                @else
+                    <a href="{{ route('auth-popup') }}" class="d-lg-show login sign-in"><i
+                            class="w-icon-account"></i>Sign In</a>
+                    <span class="delimiter d-lg-show">/</span>
+                    <a href="{{ route('auth-popup') }}" class="ml-0 d-lg-show login register">Register</a>
+                @endauth
             </div>
         </div>
     </div>

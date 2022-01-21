@@ -155,7 +155,7 @@
                             <li><a href="{{ route('about') }}">About Us</a></li>
                             <li><a href="become-a-vendor.html">Become A Vendor</a></li>
                             <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                            <li><a href="{{ route('signin') }}">Login</a></li>
+                            <li><a href="{{ route('auth') }}">Login</a></li>
                             <li><a href="faq.html">FAQs</a></li>
                             <li><a href="error-404.html">Error 404</a></li>
                             <li><a href="coming-soon.html">Coming Soon</a></li>
