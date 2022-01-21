@@ -1,0 +1,38 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 10 | / @include set-default(
+ * 11 | |     (
+ * 12 | |         timeline: (
+ * 13 | |             box: (
+ * 14 | |                 position: relative,
+ * 15 | |                 display: flex,
+ * 16 | |                 margin-bottom: 2rem,
+ * 17 | |                 width: 100%
+ * 18 | |             ),
+ * 19 | |             node: (
+ * 20 | |                 display: flex,
+ * 21 | |                 align-items: center,
+ * 22 | |                 justify-content: center,
+ * 23 | |                 width: 3rem,
+ * 24 | |                 height: 3rem,
+ * 25 | |                 border-radius: 50%,
+ * 26 | |                 border: 3px solid #999,
+ * 27 | |                 background-color: #fff
+ * 28 | |             )
+ * 29 | |         )
+ * 30 | |     )
+ * 31 | | );
+ *    | '-^
+ *    '
+ *   _timeline.scss 10:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 10 \2502  \250c  @include set-default(\a 11 \2502  \2502      (\a 12 \2502  \2502          timeline: (\a 13 \2502  \2502              box: (\a 14 \2502  \2502                  position: relative,\a 15 \2502  \2502                  display: flex,\a 16 \2502  \2502                  margin-bottom: 2rem,\a 17 \2502  \2502                  width: 100%\a 18 \2502  \2502              ),\a 19 \2502  \2502              node: (\a 20 \2502  \2502                  display: flex,\a 21 \2502  \2502                  align-items: center,\a 22 \2502  \2502                  justify-content: center,\a 23 \2502  \2502                  width: 3rem,\a 24 \2502  \2502                  height: 3rem,\a 25 \2502  \2502                  border-radius: 50%,\a 26 \2502  \2502                  border: 3px solid #999,\a 27 \2502  \2502                  background-color: #fff\a 28 \2502  \2502              )\a 29 \2502  \2502          )\a 30 \2502  \2502      )\a 31 \2502  \2502  );\a    \2502  \2514 \2500 ^\a    \2575 \a   _timeline.scss 10:1  root stylesheet";
+}

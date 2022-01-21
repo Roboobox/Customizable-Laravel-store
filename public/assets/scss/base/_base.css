@@ -1,0 +1,48 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 6  | / @include set-default(
+ * 7  | |     (
+ * 8  | |         base: (
+ * 9  | |             // max-width of '.container'
+ * 10 | |             _container-width: 1280px,
+ * 11 | |             // max-width of '.container-fluid'
+ * 12 | |             _container-fluid-width: 1820px,
+ * 13 | |             // grid spaces
+ * 14 | |             _gutter-lg: 15px,
+ * 15 | |             _gutter-md: 10px,
+ * 16 | |             _gutter-sm: 5px,
+ * 17 | |             _gutter-xs: 1px,
+ * 18 | | 
+ * 19 | |             // Body
+ * 20 | |             body: (
+ * 21 | |                 font-family: $font-family,
+ * 22 | |                 font-size: 1.4rem,
+ * 23 | |                 line-height: 1.6,
+ * 24 | |                 color: $body-color,
+ * 25 | |                 background: #fff
+ * 26 | |             ),
+ * 27 | |             page-wrapper: (
+ * 28 | |                 margin-#{$left}: false,
+ * 29 | |                 margin-#{$right}: false
+ * 30 | |             ),
+ * 31 | |             // Scroll Top
+ * 32 | |             scroll-top: (
+ * 33 | |                 background-color: #43494e
+ * 34 | |             )
+ * 35 | |         )
+ * 36 | |     )
+ * 37 | | );
+ *    | '-^
+ *    '
+ *   _base.scss 6:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 6  \2502  \250c  @include set-default(\a 7  \2502  \2502      (\a 8  \2502  \2502          base: (\a 9  \2502  \2502              // max-width of '.container'\a 10 \2502  \2502              _container-width: 1280px,\a 11 \2502  \2502              // max-width of '.container-fluid'\a 12 \2502  \2502              _container-fluid-width: 1820px,\a 13 \2502  \2502              // grid spaces\a 14 \2502  \2502              _gutter-lg: 15px,\a 15 \2502  \2502              _gutter-md: 10px,\a 16 \2502  \2502              _gutter-sm: 5px,\a 17 \2502  \2502              _gutter-xs: 1px,\a 18 \2502  \2502  \a 19 \2502  \2502              // Body\a 20 \2502  \2502              body: (\a 21 \2502  \2502                  font-family: $font-family,\a 22 \2502  \2502                  font-size: 1.4rem,\a 23 \2502  \2502                  line-height: 1.6,\a 24 \2502  \2502                  color: $body-color,\a 25 \2502  \2502                  background: #fff\a 26 \2502  \2502              ),\a 27 \2502  \2502              page-wrapper: (\a 28 \2502  \2502                  margin-#{$left}: false,\a 29 \2502  \2502                  margin-#{$right}: false\a 30 \2502  \2502              ),\a 31 \2502  \2502              // Scroll Top\a 32 \2502  \2502              scroll-top: (\a 33 \2502  \2502                  background-color: #43494e\a 34 \2502  \2502              )\a 35 \2502  \2502          )\a 36 \2502  \2502      )\a 37 \2502  \2502  );\a    \2502  \2514 \2500 ^\a    \2575 \a   _base.scss 6:1  root stylesheet";
+}

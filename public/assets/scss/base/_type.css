@@ -1,0 +1,27 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 5  | / @include set-default (
+ * 6  | |     (
+ * 7  | |         base: (
+ * 8  | |             list-circle: (
+ * 9  | |                 icon: (
+ * 10 | |                     font-size: 1.1rem
+ * 11 | |                 )
+ * 12 | |             )
+ * 13 | |         )
+ * 14 | |     )
+ * 15 | | );
+ *    | '-^
+ *    '
+ *   _type.scss 5:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 5  \2502  \250c  @include set-default (\a 6  \2502  \2502      (\a 7  \2502  \2502          base: (\a 8  \2502  \2502              list-circle: (\a 9  \2502  \2502                  icon: (\a 10 \2502  \2502                      font-size: 1.1rem\a 11 \2502  \2502                  )\a 12 \2502  \2502              )\a 13 \2502  \2502          )\a 14 \2502  \2502      )\a 15 \2502  \2502  );\a    \2502  \2514 \2500 ^\a    \2575 \a   _type.scss 5:1  root stylesheet";
+}

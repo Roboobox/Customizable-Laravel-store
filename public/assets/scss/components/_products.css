@@ -1,0 +1,112 @@
+/* Error: Undefined mixin.
+ *     ,
+ * 12  | / @include set-default(
+ * 13  | |     (
+ * 14  | |         product: (
+ * 15  | |             font-family: $font-family,
+ * 16  | |             font-size: 1rem,
+ * 17  | |             color: #020101,
+ * 18  | |             body: (
+ * 19  | |                 padding-top: 1.7rem,
+ * 20  | |                 background-color: #fff
+ * 21  | |             ),
+ * 22  | |             label: (
+ * 23  | |                 margin-bottom: .5rem,
+ * 24  | |                 font-family: false,
+ * 25  | |                 font-size: 1.2em,
+ * 26  | |                 letter-spacing: -.005em,
+ * 27  | |                 color: #fff,
+ * 28  | |                 line-height: 1,
+ * 29  | |                 padding: .6rem 1rem,
+ * 30  | |                 border-radius: .3rem,
+ * 31  | |                 text-transform: uppercase,
+ * 32  | |                 new: (
+ * 33  | |                     color: false,
+ * 34  | |                     background: $primary-color,
+ * 35  | |                     padding: .6rem 1rem
+ * 36  | |                 ),
+ * 37  | |                 discount: (
+ * 38  | |                     color: false,
+ * 39  | |                     background: $secondary-color
+ * 40  | |                 ),
+ * 41  | |                 hot: (
+ * 42  | |                     background: $success-color
+ * 43  | |                 )
+ * 44  | |             ),
+ * 45  | |             category: (
+ * 46  | |                 margin-bottom: .5rem,
+ * 47  | |                 font-family: false,
+ * 48  | |                 font-size: 1.1rem,
+ * 49  | |                 color: #999,
+ * 50  | |                 line-height: 1,
+ * 51  | |                 text-transform: uppercase
+ * 52  | |             ),
+ * 53  | |             name: (
+ * 54  | |                 margin-bottom: .7rem,
+ * 55  | |                 font-family: false,
+ * 56  | |                 font-size: 1.3rem,
+ * 57  | |                 font-weight: 500,
+ * 58  | |                 letter-spacing: false,
+ * 59  | |             ),
+ * 60  | |             rating: (
+ * 61  | |                 margin-bottom: .6rem,
+ * 62  | |                 font-size: 1.2rem,
+ * 63  | |                 _star-color: $secondary-color
+ * 64  | |             ),
+ * 65  | |             price: (
+ * 66  | |                 align-items: baseline,
+ * 67  | |                 font-family: false,
+ * 68  | |                 font-size: 1.6rem,
+ * 69  | |                 font-weight: 600,
+ * 70  | |                 letter-spacing: -.05em,
+ * 71  | |                 margin-bottom: false,
+ * 72  | |                 old: (
+ * 73  | |                     font-weight: 400,
+ * 74  | |                     color: #aaa
+ * 75  | |                 ),
+ * 76  | |                 new: (
+ * 77  | |                     color: #333,
+ * 78  | |                     _space: 1rem,
+ * 79  | |                     text-decoration: none,
+ * 80  | |                 )
+ * 81  | |             ),
+ * 82  | |             sales-wrapper: (
+ * 83  | |                 margin-bottom: 1.4rem,
+ * 84  | |                 bar: (
+ * 85  | |                     height: 1rem,
+ * 86  | |                     background: #eee,
+ * 87  | |                     span: (
+ * 88  | |                         background: #999
+ * 89  | |                     )
+ * 90  | |                 )
+ * 91  | |             ),
+ * 92  | |             variation: (
+ * 93  | |                 width: 2.6rem,
+ * 94  | |                 height: 2.6rem,
+ * 95  | |                 color: #333,
+ * 96  | |                 border: 1px solid #ccc,
+ * 97  | |                 padding: .2rem,
+ * 98  | |                 _active-border: 1px solid $primary-color,
+ * 99  | |                 _active-outline: #fff solid 2px,
+ * 100 | | 
+ * 101 | |                 // custom types
+ * 102 | |                 _color-border: 1px solid #ccc,
+ * 103 | |                 _image-border: 0,
+ * 104 | |             )
+ * 105 | |         )
+ * 106 | |     )
+ * 107 | | );
+ *     | '-^
+ *     '
+ *   _products.scss 12:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a     \2577 \a 12  \2502  \250c  @include set-default(\a 13  \2502  \2502      (\a 14  \2502  \2502          product: (\a 15  \2502  \2502              font-family: $font-family,\a 16  \2502  \2502              font-size: 1rem,\a 17  \2502  \2502              color: #020101,\a 18  \2502  \2502              body: (\a 19  \2502  \2502                  padding-top: 1.7rem,\a 20  \2502  \2502                  background-color: #fff\a 21  \2502  \2502              ),\a 22  \2502  \2502              label: (\a 23  \2502  \2502                  margin-bottom: .5rem,\a 24  \2502  \2502                  font-family: false,\a 25  \2502  \2502                  font-size: 1.2em,\a 26  \2502  \2502                  letter-spacing: -.005em,\a 27  \2502  \2502                  color: #fff,\a 28  \2502  \2502                  line-height: 1,\a 29  \2502  \2502                  padding: .6rem 1rem,\a 30  \2502  \2502                  border-radius: .3rem,\a 31  \2502  \2502                  text-transform: uppercase,\a 32  \2502  \2502                  new: (\a 33  \2502  \2502                      color: false,\a 34  \2502  \2502                      background: $primary-color,\a 35  \2502  \2502                      padding: .6rem 1rem\a 36  \2502  \2502                  ),\a 37  \2502  \2502                  discount: (\a 38  \2502  \2502                      color: false,\a 39  \2502  \2502                      background: $secondary-color\a 40  \2502  \2502                  ),\a 41  \2502  \2502                  hot: (\a 42  \2502  \2502                      background: $success-color\a 43  \2502  \2502                  )\a 44  \2502  \2502              ),\a 45  \2502  \2502              category: (\a 46  \2502  \2502                  margin-bottom: .5rem,\a 47  \2502  \2502                  font-family: false,\a 48  \2502  \2502                  font-size: 1.1rem,\a 49  \2502  \2502                  color: #999,\a 50  \2502  \2502                  line-height: 1,\a 51  \2502  \2502                  text-transform: uppercase\a 52  \2502  \2502              ),\a 53  \2502  \2502              name: (\a 54  \2502  \2502                  margin-bottom: .7rem,\a 55  \2502  \2502                  font-family: false,\a 56  \2502  \2502                  font-size: 1.3rem,\a 57  \2502  \2502                  font-weight: 500,\a 58  \2502  \2502                  letter-spacing: false,\a 59  \2502  \2502              ),\a 60  \2502  \2502              rating: (\a 61  \2502  \2502                  margin-bottom: .6rem,\a 62  \2502  \2502                  font-size: 1.2rem,\a 63  \2502  \2502                  _star-color: $secondary-color\a 64  \2502  \2502              ),\a 65  \2502  \2502              price: (\a 66  \2502  \2502                  align-items: baseline,\a 67  \2502  \2502                  font-family: false,\a 68  \2502  \2502                  font-size: 1.6rem,\a 69  \2502  \2502                  font-weight: 600,\a 70  \2502  \2502                  letter-spacing: -.05em,\a 71  \2502  \2502                  margin-bottom: false,\a 72  \2502  \2502                  old: (\a 73  \2502  \2502                      font-weight: 400,\a 74  \2502  \2502                      color: #aaa\a 75  \2502  \2502                  ),\a 76  \2502  \2502                  new: (\a 77  \2502  \2502                      color: #333,\a 78  \2502  \2502                      _space: 1rem,\a 79  \2502  \2502                      text-decoration: none,\a 80  \2502  \2502                  )\a 81  \2502  \2502              ),\a 82  \2502  \2502              sales-wrapper: (\a 83  \2502  \2502                  margin-bottom: 1.4rem,\a 84  \2502  \2502                  bar: (\a 85  \2502  \2502                      height: 1rem,\a 86  \2502  \2502                      background: #eee,\a 87  \2502  \2502                      span: (\a 88  \2502  \2502                          background: #999\a 89  \2502  \2502                      )\a 90  \2502  \2502                  )\a 91  \2502  \2502              ),\a 92  \2502  \2502              variation: (\a 93  \2502  \2502                  width: 2.6rem,\a 94  \2502  \2502                  height: 2.6rem,\a 95  \2502  \2502                  color: #333,\a 96  \2502  \2502                  border: 1px solid #ccc,\a 97  \2502  \2502                  padding: .2rem,\a 98  \2502  \2502                  _active-border: 1px solid $primary-color,\a 99  \2502  \2502                  _active-outline: #fff solid 2px,\a 100 \2502  \2502  \a 101 \2502  \2502                  // custom types\a 102 \2502  \2502                  _color-border: 1px solid #ccc,\a 103 \2502  \2502                  _image-border: 0,\a 104 \2502  \2502              )\a 105 \2502  \2502          )\a 106 \2502  \2502      )\a 107 \2502  \2502  );\a     \2502  \2514 \2500 ^\a     \2575 \a   _products.scss 12:1  root stylesheet";
+}

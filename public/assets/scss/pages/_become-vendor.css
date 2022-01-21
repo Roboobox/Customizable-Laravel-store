@@ -1,0 +1,25 @@
+/* Error: Undefined mixin.
+ *    ,
+ * 32 | / @include mq(lg) {
+ * 33 | |     .create-store {
+ * 34 | |         .row > div:last-child {
+ * 35 | |             padding: 0 9rem 0 1.1rem;
+ * 36 | |         }
+ * 37 | |         .title {
+ * 38 | |             max-width: 47rem;
+ * 39 | |         }
+ * 40 | |     }
+ * 41 | \ }
+ *    '
+ *   _become-vendor.scss 32:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Undefined mixin.\a    \2577 \a 32 \2502  \250c  @include mq(lg) {\a 33 \2502  \2502      .create-store {\a 34 \2502  \2502          .row > div:last-child {\a 35 \2502  \2502              padding: 0 9rem 0 1.1rem;\a 36 \2502  \2502          }\a 37 \2502  \2502          .title {\a 38 \2502  \2502              max-width: 47rem;\a 39 \2502  \2502          }\a 40 \2502  \2502      }\a 41 \2502  \2514  }\a    \2575 \a   _become-vendor.scss 32:1  root stylesheet";
+}
