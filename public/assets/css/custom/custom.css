@@ -88,4 +88,9 @@ input.invalid {
   color: #336699;
 }
 
+.brands-wrapper .swiper-wrapper img {
+  height: 85px;
+  object-fit: cover;
+}
+
 /*# sourceMappingURL=custom.css.map */

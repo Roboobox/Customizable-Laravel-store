@@ -5,5 +5,6 @@ $(function ( ) {
     {
         $('.login-popup .form-group input').removeClass('invalid');
         $('.login-popup .form-group .invalid-feedback').remove();
+        $('.login-popup .form-group .alert').remove();
     })
 });

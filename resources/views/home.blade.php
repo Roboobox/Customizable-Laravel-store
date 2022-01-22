@@ -1,5 +1,4 @@
 <x-layout body-class="home">
-
     <x-slot name="customCss">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/demo1.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/animate.min.css') }}">
@@ -16,7 +15,7 @@
         <x-top-categories-banner></x-top-categories-banner>
 
         <div class="container">
-            <x-clients-banner></x-clients-banner>
+            <x-clients-banner :clients="$clients"></x-clients-banner>
             <x-recent-views-banner></x-recent-views-banner>
         </div>
     </x-slot>

@@ -71,7 +71,7 @@
                         <h4 class="widget-title">My Account</h4>
                         <ul class="widget-body">
                             <li><a href="#">Order history</a></li>
-                            <li><a href="{{ route('account') }}">Account details</a></li>
+                            <li><a href="{{ route('account-details') }}">Account details</a></li>
                             <li><a href="{{ route('auth') }}">Sign In</a></li>
                             <li><a href="{{ route('cart') }}">View cart</a></li>
                         </ul>

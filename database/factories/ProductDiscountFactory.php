@@ -14,7 +14,10 @@ class ProductDiscountFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'discount_percent' => $this->faker->numberBetween(1, 99),
+            'is_active' => true,
+            'starting_at' => $this->faker->dateTimeBetween('-1 month', '+1 months'),
+            'ending_at' => $this->faker->dateTimeBetween('+2 months', '+4 months'),
         ];
     }
 }

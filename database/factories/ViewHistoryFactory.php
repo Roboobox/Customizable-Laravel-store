@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ProductCategoryFactory extends Factory
+class ViewHistoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +16,8 @@ class ProductCategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->sentence(2),
+            'user_id' => User::factory(),
+            'product_id' => Product::factory()
         ];
     }
 }

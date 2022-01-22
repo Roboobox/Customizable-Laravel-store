@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountDetailController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name("home");
+Route::get('/', [HomeController::class, 'create'])
+    ->name("home");
 
 Route::get('/product', function () {
     return view('product');
@@ -50,8 +52,32 @@ Route::get('/contact', function () {
 })->name("contact");
 
 Route::get('/account', function () {
-    return view('account');
-})->name("account")->middleware('auth');;
+    return view('account.dashboard');
+})->name("account")->middleware('auth');
+
+Route::get('/account/orders', function () {
+    return view('account.orders');
+})->name("orders")->middleware('auth');
+
+Route::get('/account/downloads', function () {
+    return view('account.downloads');
+})->name("downloads")->middleware('auth');
+
+Route::get('/account/addresses', function () {
+    return view('account.addresses');
+})->name("addresses")->middleware('auth');
+
+Route::get('/account/details', function () {
+    return view('account.account-details');
+})->name("account-details")->middleware('auth');
+
+Route::post('/account/details', [AccountDetailController::class, 'store'])
+    ->name("account-details")
+    ->middleware('auth');
+
+Route::post('/change-password', [ChangePasswordController::class, 'store'])
+    ->name("change-password")
+    ->middleware('auth');
 
 Route::get('/coming-soon', function () {
     return view('welcome');
