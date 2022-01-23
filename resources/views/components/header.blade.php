@@ -55,10 +55,10 @@
                 <a href="{{ route('home') }}" class="logo ml-lg-0">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="logo" width="144" height="45" />
                 </a>
-                <form method="get" action="#"
+                <form method="get" action="{{ route('products') }}"
                       class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                     <div class="select-box">
-                        <select id="category" name="category">
+                        <select id="category" name="cat">
                             <option value="">All Categories</option>
                             <option value="4">Fashion</option>
                             <option value="5">Furniture</option>
@@ -71,7 +71,7 @@
                             <option value="12">Clothing</option>
                         </select>
                     </div>
-                    <input type="text" class="form-control" name="search" id="search" placeholder="Search in..."
+                    <input type="text" class="form-control" name="s" id="search" placeholder="Search in..."
                            required />
                     <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
                     </button>

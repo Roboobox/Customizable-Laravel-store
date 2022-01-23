@@ -19,7 +19,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="firstname">First name</label>
-                        <input type="text" id="firstname" name="firstname"
+                        <input type="text" value="{{ auth()->user()->name ?? '' }}" id="firstname" name="firstname"
                                class="form-control form-control-md{{ $errors->has('firstname') ? ' invalid' : ''}}">
                         @error('firstname')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="lastname">Last name</label>
-                        <input type="text" id="lastname" name="lastname"
+                        <input type="text" id="lastname" name="lastname" value="{{ auth()->user()->surname ?? '' }}"
                                class="form-control form-control-md{{ $errors->has('lastname') ? ' invalid' : ''}}">
                         @error('lastname')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -42,7 +42,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="phone_number">Phone number</label>
-                        <input type="tel" id="phone_number" name="phone_number"
+                        <input type="tel" id="phone_number" name="phone_number" value="{{ auth()->user()->mobile ?? '' }}"
                                class="form-control form-control-md{{ $errors->has('phone_number') ? ' invalid' : ''}}">
                         @error('phone_number')
                             <div class="invalid-feedback">{{ $message }}</div>

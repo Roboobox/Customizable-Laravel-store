@@ -19,6 +19,27 @@ class Product extends Model
         });
     }
 
+    public function scopeFilter($query, array $filters)
+    {
+        if (($filters['search'] ?? false) && !empty($filters['search'])) {
+            $query->where('name', 'like', '%' . $filters['search'] . '%');
+        }
+    }
+
+    public function scopeSort($query, string $sort) {
+        if ($sort === 'alpha-asc') {
+            $query->orderBy('name');
+        } else if ($sort === 'alpha-dsc') {
+            $query->orderByDesc('name');
+        } else if ($sort === 'price-low') {
+            $query->orderBy('price');
+        } else if ($sort === 'price-high') {
+            $query->orderByDesc('price');
+        } else if ($sort === 'date') {
+            $query->orderBy('created_at');
+        }
+    }
+
     public function getFinalPrice($activeDiscounts) {
         $discount = $activeDiscounts->first();
         if ($discount)

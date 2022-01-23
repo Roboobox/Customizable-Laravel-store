@@ -26,6 +26,9 @@ Route::get('/product/{product:slug}', [ProductController::class, 'show'])
 Route::get('/products', [ProductController::class, 'index'])
     ->name("products");
 
+Route::post('ajax/products', [ProductController::class, 'search'])
+    ->name("ajax-products");
+
 Route::get('/cart', function () {
     return view('cart');
 })->name("cart");
@@ -89,5 +92,9 @@ Route::get('/login-popup', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+// TODO : Remove
+Route::get('/test', [ProductController::class, 'test'])
+    ->name("test");
 
 require __DIR__.'/auth.php';
