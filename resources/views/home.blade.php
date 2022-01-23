@@ -16,7 +16,9 @@
 
         <div class="container">
             <x-clients-banner :clients="$clients"></x-clients-banner>
-            <x-recent-views-banner></x-recent-views-banner>
+            @if(!empty($recentlyViewed))
+                <x-recent-views-banner :recently-viewed="$recentlyViewed"></x-recent-views-banner>
+            @endif
         </div>
     </x-slot>
 

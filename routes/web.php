@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ChangePasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountDetailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,11 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'create'])
     ->name("home");
 
-Route::get('/product', function () {
-    return view('product');
-});
+Route::get('/product/{product:slug}', [ProductController::class, 'show'])
+    ->name('product');
+
+Route::get('/products', [ProductController::class, 'index'])
+    ->name("products");
 
 Route::get('/cart', function () {
     return view('cart');
@@ -34,10 +37,6 @@ Route::get('/checkout', function () {
 Route::get('/order-complete', function () {
     return view('order-complete');
 })->name("order-complete");
-
-Route::get('/products', function () {
-    return view('products');
-})->name("products");
 
 Route::get('/auth', function () {
     return view('auth-page');

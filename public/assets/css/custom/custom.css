@@ -20,8 +20,7 @@ input.invalid {
 }
 
 .product-wrapper .product-media img {
-  height: 180px;
-  object-fit: contain;
+  height: 245px;
 }
 
 .filter-items li span {
@@ -60,12 +59,6 @@ input.invalid {
   object-fit: contain;
 }
 
-.swiper-recent-views img {
-  height: 155px;
-  width: 138px;
-  object-fit: contain !important;
-}
-
 .product-option-swatch {
   margin-bottom: 2rem;
 }
@@ -91,6 +84,11 @@ input.invalid {
 .brands-wrapper .swiper-wrapper img {
   height: 85px;
   object-fit: cover;
+}
+
+#recently_viewed .swiper-wrapper img {
+  height: 155px;
+  object-fit: cover !important;
 }
 
 /*# sourceMappingURL=custom.css.map */
