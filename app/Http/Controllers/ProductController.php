@@ -3,32 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\ProductSpecification;
 use Illuminate\Http\Request;
 use Illuminate\View\ComponentAttributeBag;
+use mysql_xdevapi\Exception;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        return view('products', [
-            //'products' => Product::with('photos', 'specifications', 'category',  'activeDiscounts')->paginate(12),
-        ]);
+        return view('products');
     }
 
     public function show(Product $product)
     {
         return view('product', [
-            'product' => $product->load(['photos', 'specifications', 'category',  'activeDiscounts'] ),
+            'product' => $product->load(['photos', 'specifications','specifications.label', 'category'] ),
             'moreProducts' => Product::whereNotIn('id', [$product->id])->inRandomOrder()->limit(6)
-                ->with(['photos:product_id,photo_path', 'activeDiscounts'])->get(),
+                ->with(['photos:product_id,photo_path'])->get(),
         ]);
     }
 
+
     public function search(Request $request)
     {
+        // Get POST variables
         $search = $request->input('search') ?? "";
+        $category = $request->input('category') ?? "";
         $itemsPerPage = $request->input('itemsPerPage') ?? 12;
         $sort = $request->input('sort') ?? 12;
+        $specifications = $request->input('specifications') ?? "";
+        $specGroups = $request->input('specGroups') ?? 1;
+
+        if ($specGroups < 1 || $specGroups > 1000) {
+            $specGroups = 1;
+        }
 
         // Check if items per page is one of the available values else set to 12
         if (!in_array($itemsPerPage, [3, 9, 12, 24, 36]) ) {
@@ -39,31 +49,46 @@ class ProductController extends Controller
             $sort = 'alpha-asc';
         }
 
-        $products = Product::filter(['search' => $search])
-            ->with('photos', 'specifications', 'category',  'activeDiscounts')
+        // Get paginated products with filters applied
+        $products = Product::with('photos', 'specifications', 'category',  'discount')
+            ->filter([
+                'search' => $search,
+                'category' => $category,
+                'specifications' => $specifications,
+                'specGroups' => $specGroups
+            ])
             ->sort($sort)
             ->paginate($itemsPerPage, ['*'], 'page', $request->input('page'))
             ->withPath('products');
 
+        $searchedProducts = Product::filter(['search' => $search, 'category' => $category])->select('id');
+        $searchedProductCategories = Product::filter(['search' => $search, 'category' => $category])->select('category_id')->distinct();
+
+        // Get specifications of all products that match search and category
+        $filterSpecifications = ProductSpecification::select(['specification_id', 'specifications.value', 'specification_labels.label', 'specification_labels.id as label_id'])
+            ->leftJoin('specifications', 'product_specifications.specification_id', '=', 'specifications.id')
+            ->leftJoin('specification_labels', 'specifications.specification_label_id', '=', 'specification_labels.id')
+            ->whereIn('product_id', ($searchedProducts))
+            ->get();
+
+
+        $filterCategories = ProductCategory::whereIn('id', $searchedProductCategories)->get();
+
         // Create view HTML with products
         $view = view('components.products.shop-content', [
             'products' => $products,
+            'specifications' => $filterSpecifications->unique('specification_id'),
+            'categories' => $filterCategories,
             'itemsPerPage' => $itemsPerPage,
             'sort' => $sort,
             'attributes' => new ComponentAttributeBag([]),
         ])->render();
 
+
         // Return JSON response
         return response()->json([
             'status' => 'success',
             'content' => $view,
-            'products' => $products
-        ]);
-    }
-
-    public function test() {
-        return view('test', [
-            'products' => Product::with('discount')->get(),
         ]);
     }
 }

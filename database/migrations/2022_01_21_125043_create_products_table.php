@@ -19,11 +19,14 @@ class CreateProductsTable extends Migration
             $table->string('name', 100);
             $table->text('description')->nullable();
             $table->boolean('is_deleted');
+            $table->unsignedInteger('inventory');
             $table->unsignedDecimal('price', 9, 2);
+            $table->unsignedTinyInteger('discount_percent');
             $table->timestamps();
 
             $table->foreignId('category_id')->constrained('product_categories');
-            $table->foreignId('inventory_id')->constrained('product_inventories');
+
+            $table->index('name');
         });
     }
 

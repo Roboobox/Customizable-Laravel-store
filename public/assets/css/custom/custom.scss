@@ -105,3 +105,27 @@ input.invalid {
         }
     }
 }
+
+.intro-section {
+    .banner-content {
+        h5 {
+            font-weight: normal;
+            color: #666;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            margin-bottom: 1rem;
+            font-size: 4rem;
+            display: inline-block;
+        }
+        h5.underline {
+            margin: 0 10px;
+            border-bottom: 3px solid #f77c29;
+        }
+
+        p {
+            b {
+                color: #f77c29
+            }
+        }
+    }
+}

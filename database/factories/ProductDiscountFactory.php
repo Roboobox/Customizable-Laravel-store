@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductDiscountFactory extends Factory
@@ -18,6 +19,7 @@ class ProductDiscountFactory extends Factory
             'is_active' => true,
             'starting_at' => $this->faker->dateTimeBetween('-1 month', '+1 months'),
             'ending_at' => $this->faker->dateTimeBetween('+2 months', '+4 months'),
+            'product_id' => Product::factory(),
         ];
     }
 }

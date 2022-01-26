@@ -13,4 +13,9 @@ class ProductSpecification extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function specification()
+    {
+        return $this->belongsTo(Specification::class);
+    }
 }

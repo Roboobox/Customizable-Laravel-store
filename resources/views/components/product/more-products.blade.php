@@ -25,7 +25,7 @@
                             <div class="product product-widget">
                                 <figure class="product-media">
                                     <a href="{{ route('product', ['product' => $product->slug]) }}">
-                                        <img src="{{ $product->photos->first()->photo_path }}" alt="Product"
+                                        <img src="{{ asset('assets/images/store/products/' . $product->photos->first()->photo_path) }}" alt="Product"
                                              width="100" height="113" />
                                     </a>
                                 </figure>

@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductInventory extends Model
+class SpecificationLabel extends Model
 {
     use HasFactory;
 
-    public function product()
+    public function specifications()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Specification::class, 'specification_label_id', 'id');
     }
 }

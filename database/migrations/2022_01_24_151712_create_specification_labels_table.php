@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductInventoriesTable extends Migration
+class CreateSpecificationLabelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateProductInventoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_inventories', function (Blueprint $table) {
+        Schema::create('specification_labels', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('quantity');
+            $table->string('label', 50);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateProductInventoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_inventories');
+        Schema::dropIfExists('specification_labels');
     }
 }

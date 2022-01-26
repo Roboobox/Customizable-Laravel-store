@@ -3,12 +3,12 @@
     <div class="product text-center">
         <figure class="product-media">
             <a href="{{ route('product', ['product' => $product->slug]) }}">
-                <img src="{{ $product->photos->first()->photo_path }}" alt="Product" width="300"
+                <img src="{{ asset('assets/images/store/products/' . $product->photos->first()->photo_path) }}" alt="Product" width="300"
                      height="338" />
             </a>
-            @if($product->activeDiscounts->first())
+            @if($product->discount)
                 <div class="product-countdown-container">
-                    <div class="product-countdown countdown-compact" data-until="{{  date('Y', strtotime($product->activeDiscounts->first()->ending_at)) }}, {{  date('m', strtotime($product->activeDiscounts->first()->ending_at)) }}, {{  date('d', strtotime($product->activeDiscounts->first()->ending_at)) }}"
+                    <div class="product-countdown countdown-compact" data-until="{{  date('Y', strtotime($product->discount->ending_at)) }}, {{  date('m', strtotime($product->discount->ending_at)) }}, {{  date('d', strtotime($product->discount->ending_at)) }}"
                          data-format="DHMS" data-compact="false"
                          data-labels-short="Days, Hours, Mins, Secs">
                         00:00:00:00</div>
@@ -35,14 +35,15 @@
             </h3>
             <div class="product-pa-wrapper">
                 <div class="product-price">
-                @if($product->activeDiscounts->first())
-                    <ins class="new-price">${{ $product->getFinalPrice($product->activeDiscounts) }}</ins>
+                @if($product->discount)
+                    <ins class="new-price">${{ $product->getFinalPrice($product->discount) }}</ins>
                     <del class="old-price">${{ $product->price }}</del>
                 @else
                     ${{ $product->price }}
                 @endif
                 </div>
             </div>
+{{--            <x-products.text-specification :product="$product"></x-products.text-specification>--}}
         </div>
     </div>
 </div>

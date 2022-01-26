@@ -9,20 +9,41 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     use HasFactory;
-
+    use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     public static function boot()
     {
         parent::boot();
         self::creating(function ($product) {
-            $product->slug = Str::of($product->name)->slug('-');
+            //$product->slug = Str::of($product->name)->slug('-');
+            $product->slug = Str::of(Str::uuid())->slug('-');
         });
     }
+
+//    public function setSlugAttribute($value) {
+//
+//        if (static::whereSlug($slug = $value)->exists()) {
+//
+//            $slug = $this->incrementSlug($slug);
+//        }
+//
+//        $this->attributes['slug'] = $slug;
+//    }
 
     public function scopeFilter($query, array $filters)
     {
         if (($filters['search'] ?? false) && !empty($filters['search'])) {
             $query->where('name', 'like', '%' . $filters['search'] . '%');
+        }
+        if (($filters['category'] ?? false) && !empty($filters['category'])) {
+            $query->whereHas('category', function($query) use ($filters) {
+                $query->where('slug', $filters['category']);
+            });
+        }
+        if (($filters['specifications'] ?? false) && !empty($filters['specifications']) && ($filters['specGroups'] ?? false)) {
+            $specFilters = explode("-", $filters['specifications']);
+            $query->whereIn('id', ProductSpecification::whereIn('specification_id', $specFilters)->groupBy('product_id')
+                ->havingRaw("COUNT(DISTINCT specification_id) = ?", [$filters['specGroups']])->select('product_id')->get());
         }
     }
 
@@ -40,11 +61,10 @@ class Product extends Model
         }
     }
 
-    public function getFinalPrice($activeDiscounts) {
-        $discount = $activeDiscounts->first();
+    public function getFinalPrice($discount) {
         if ($discount)
         {
-            return number_format(($this->price * $discount->value('discount_percent')) / 100, 2, '.', '');
+            return number_format(($this->price * $discount->discount_percent) / 100, 2, '.', '');
         }
         return $this->price;
     }
@@ -54,11 +74,6 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class);
     }
 
-    public function inventory()
-    {
-        return $this->hasOne(ProductInventory::class);
-    }
-
     public function photos()
     {
         return $this->hasMany(ProductPhoto::class, 'product_id');
@@ -66,7 +81,7 @@ class Product extends Model
 
     public function specifications()
     {
-        return $this->hasMany(ProductSpecification::class);
+        return $this->belongsToMany(Specification::class, 'product_specifications');
     }
 
     public function discounts()
@@ -74,12 +89,15 @@ class Product extends Model
         return $this->hasMany(ProductDiscount::class);
     }
 
-    public function activeDiscounts()
+    public function discount()
     {
-        return $this->hasMany(ProductDiscount::class)
+        // Uses EloquentEagerLimit\HasEagerLimit
+        return $this->hasOne(ProductDiscount::class)
+            ->latest()
             ->where('is_active', true)
             ->where('starting_at', '<=', now())
-            ->where('ending_at', '>=', now());
+            ->where('ending_at', '>=', now())
+            ->limit(1);
     }
 
     // Possibly not needed

@@ -1,4 +1,4 @@
-@props(['products', 'itemsPerPage', 'sort'])
+@props(['products', 'itemsPerPage', 'sort', 'specifications', 'categories'])
     <!-- Start of Sidebar, Shop Sidebar -->
     <aside class="sidebar shop-sidebar sticky-sidebar-wrapper sidebar-fixed">
         <!-- Start of Sidebar Overlay -->
@@ -13,89 +13,7 @@
                     <label>Filter :</label>
                     <a href="#" class="btn btn-dark btn-link filter-clean">Clean All</a>
                 </div>
-                <!-- Start of Collapsible widget -->
-                <div class="widget widget-collapsible">
-                    <h3 class="widget-title"><span>All Categories</span></h3>
-                    <ul class="widget-body filter-items search-ul">
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Babies</a></li>
-                        <li><a href="#">Beauty</a></li>
-                        <li><a href="#">Decoration</a></li>
-                        <li><a href="#">Electronics</a></li>
-                        <li><a href="#">Fashion</a></li>
-                        <li><a href="#">Food</a></li>
-                        <li><a href="#">Furniture</a></li>
-                        <li><a href="#">Kitchen</a></li>
-                        <li><a href="#">Medical</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Watches</a></li>
-                    </ul>
-                </div>
-                <!-- End of Collapsible Widget -->
-
-                <!-- Start of Collapsible Widget -->
-                <div class="widget widget-collapsible">
-                    <h3 class="widget-title"><span>Price</span></h3>
-                    <div class="widget-body">
-                        <ul class="filter-items search-ul">
-                            <li><a href="#">$0.00 - $100.00</a></li>
-                            <li><a href="#">$100.00 - $200.00</a></li>
-                            <li><a href="#">$200.00 - $300.00</a></li>
-                            <li><a href="#">$300.00 - $500.00</a></li>
-                            <li><a href="#">$500.00+</a></li>
-                        </ul>
-                        <form class="price-range">
-                            <input type="number" name="min_price" class="min_price text-center"
-                                   placeholder="$min"><span class="delimiter">-</span><input
-                                type="number" name="max_price" class="max_price text-center"
-                                placeholder="$max"><a href="#"
-                                                      class="btn btn-primary btn-rounded">Go</a>
-                        </form>
-                    </div>
-                </div>
-                <!-- End of Collapsible Widget -->
-
-                <!-- Start of Collapsible Widget -->
-                <div class="widget widget-collapsible">
-                    <h3 class="widget-title"><span>Size</span></h3>
-                    <ul class="widget-body filter-items item-check mt-1">
-                        <li><a href="#">Extra Large</a></li>
-                        <li><a href="#">Large</a></li>
-                        <li><a href="#">Medium</a></li>
-                        <li><a href="#">Small</a></li>
-                    </ul>
-                </div>
-                <!-- End of Collapsible Widget -->
-
-                <!-- Start of Collapsible Widget -->
-                <div class="widget widget-collapsible">
-                    <h3 class="widget-title"><span>Brand</span></h3>
-                    <ul class="widget-body filter-items item-check mt-1">
-                        <li><a href="#">Elegant Auto Group</a></li>
-                        <li><a href="#">Green Grass</a></li>
-                        <li><a href="#">Node Js</a></li>
-                        <li><a href="#">NS8</a></li>
-                        <li><a href="#">Red</a></li>
-                        <li><a href="#">Skysuite Tech</a></li>
-                        <li><a href="#">Sterling</a></li>
-                    </ul>
-                </div>
-                <!-- End of Collapsible Widget -->
-
-                <!-- Start of Collapsible Widget -->
-                <div class="widget widget-collapsible">
-                    <h3 class="widget-title"><span>Color</span></h3>
-                    <ul class="widget-body filter-items item-check mt-1">
-                        <li><a href="#">Black</a></li>
-                        <li><a href="#">Blue</a></li>
-                        <li><a href="#">Brown</a></li>
-                        <li><a href="#">Green</a></li>
-                        <li><a href="#">Grey</a></li>
-                        <li><a href="#">Orange</a></li>
-                        <li><a href="#">Yellow</a></li>
-                    </ul>
-                </div>
-                <!-- End of Collapsible Widget -->
+                <x-products.specification-filters :specifications="$specifications" :categories="$categories"></x-products.specification-filters>
             </div>
             <!-- End of Sidebar Content -->
         </div>
@@ -150,28 +68,29 @@
         </div>
 
         <div class="toolbox toolbox-pagination justify-content-between">
-            <p class="showing-info mb-2 mb-sm-0">
-                Showing<span>1-12 of 60</span>Products
-            </p>
+{{--            <p class="showing-info mb-2 mb-sm-0">--}}
+{{--                Showing<span>1-12 of 60</span>Products--}}
+{{--            </p>--}}
 {{--            {{ $products->withQueryString()->links('vendor.pagination.custom-pagination') }}--}}
-            <ul class="pagination">
-                <li class="prev disabled">
-                    <a href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                        <i class="w-icon-long-arrow-left"></i>Prev
-                    </a>
-                </li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="next">
-                    <a href="#" aria-label="Next">
-                        Next<i class="w-icon-long-arrow-right"></i>
-                    </a>
-                </li>
-            </ul>
+            {{ $products->withQueryString()->links('vendor.pagination.custom-pagination') }}
+{{--            <ul class="pagination">--}}
+{{--                <li class="prev disabled">--}}
+{{--                    <a href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">--}}
+{{--                        <i class="w-icon-long-arrow-left"></i>Prev--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li class="page-item active">--}}
+{{--                    <a class="page-link" href="#">1</a>--}}
+{{--                </li>--}}
+{{--                <li class="page-item">--}}
+{{--                    <a class="page-link" href="#">2</a>--}}
+{{--                </li>--}}
+{{--                <li class="next">--}}
+{{--                    <a href="#" aria-label="Next">--}}
+{{--                        Next<i class="w-icon-long-arrow-right"></i>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
         </div>
     </div>
     <!-- End of Shop Main Content -->

@@ -25,8 +25,8 @@
                                             @foreach($product->photos as $photo)
                                                 <div class="swiper-slide">
                                                     <figure class="product-image">
-                                                        <img src="{{ $photo->photo_path }}"
-                                                             data-zoom-image="{{ $photo->photo_path }}"
+                                                        <img src="{{ asset('assets/images/store/products/' . $photo->photo_path) }}"
+                                                             data-zoom-image="{{ asset('assets/images/store/products/' . $photo->photo_path) }}"
                                                              alt="{{ $product->name }}" width="800" height="900">
                                                     </figure>
                                                 </div>
@@ -45,7 +45,7 @@
                                         <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
                                             @foreach($product->photos as $photo)
                                                 <div class="product-thumb swiper-slide">
-                                                    <img src="{{ $photo->photo_path }}"
+                                                    <img src="{{ asset('assets/images/store/products/' . $photo->photo_path) }}"
                                                          alt="Product Thumb" width="800" height="900">
                                                 </div>
                                             @endforeach
@@ -133,8 +133,8 @@
                                     <ul class="list-none">
                                         @foreach($product->specifications as $specification)
                                             <li>
-                                                <label>{{ $specification->label }}</label>
-                                                <p>{{ $specification->data }}</p>
+                                                <label>{{ $specification->label->label }}</label>
+                                                <p>{{ $specification->value }}</p>
                                             </li>
                                         @endforeach
                                     </ul>

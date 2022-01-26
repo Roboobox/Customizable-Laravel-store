@@ -58,17 +58,11 @@
                 <form method="get" action="{{ route('products') }}"
                       class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                     <div class="select-box">
-                        <select id="category" name="cat">
-                            <option value="">All Categories</option>
-                            <option value="4">Fashion</option>
-                            <option value="5">Furniture</option>
-                            <option value="6">Shoes</option>
-                            <option value="7">Sports</option>
-                            <option value="8">Games</option>
-                            <option value="9">Computers</option>
-                            <option value="10">Electronics</option>
-                            <option value="11">Kitchen</option>
-                            <option value="12">Clothing</option>
+                        <select id="category" name="c">
+                            <option value="" selected>All Categories</option>
+                            @foreach($productCategories as $category)
+                                <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <input type="text" class="form-control" name="s" id="search" placeholder="Search in..."
@@ -167,7 +161,7 @@
             <div class="inner-wrap">
                 <div class="header-left">
                     <div class="dropdown category-dropdown has-border" data-visible="true">
-                        <a href="#" class="category-toggle text-dark" role="button" data-toggle="dropdown"
+                        <a href="#" class="category-toggle {{ Route::is('home') ? 'text-dark' : '' }}" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="true" data-display="static"
                            title="Browse Categories">
                             <i class="w-icon-category"></i>
@@ -176,61 +170,68 @@
 
                         <div class="dropdown-box">
                             <ul class="menu vertical-menu category-menu">
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-tshirt2"></i>Fashion
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-home"></i>Home & Garden
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-electronics"></i>Electronics
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-furniture"></i>Furniture
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-heartbeat"></i>Healthy & Beauty
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-gift"></i>Gift Ideas
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-gamepad"></i>Toy & Games
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-ice-cream"></i>Cooking
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-ios"></i>Smart Phones
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-camera"></i>Cameras & Photo
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('products') }}">
-                                        <i class="w-icon-ruby"></i>Accessories
-                                    </a>
-                                </li>
+                                @foreach($productCategories as $productCategory)
+                                    <li>
+                                        <a href="{{ route('products') . '?c=' . $productCategory->slug }}">
+                                            <i class="w-icon-heartbeat"></i>{{ $productCategory->name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-tshirt2"></i>Fashion--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-home"></i>Home & Garden--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-electronics"></i>Electronics--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-furniture"></i>Furniture--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-heartbeat"></i>Healthy & Beauty--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-gift"></i>Gift Ideas--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-gamepad"></i>Toy & Games--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-ice-cream"></i>Cooking--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-ios"></i>Smart Phones--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-camera"></i>Cameras & Photo--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{ route('products') }}">--}}
+{{--                                        <i class="w-icon-ruby"></i>Accessories--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
                                 <li>
                                     <a href="{{ route('products') }}"
                                        class="font-weight-bold text-primary text-uppercase ls-25">

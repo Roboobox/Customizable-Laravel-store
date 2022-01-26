@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductDiscount extends Model
 {
     use HasFactory;
+    use \Staudenmeir\EloquentEagerLimit\HasEagerLimit;
 
     public function product()
     {
