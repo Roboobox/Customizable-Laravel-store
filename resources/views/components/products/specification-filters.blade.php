@@ -6,11 +6,11 @@
 
 <!-- Start of Collapsible widget -->
 @if (count($categories) > 1)
-    <div class="widget widget-collapsible">
+    <div class="widget widget-collapsible product-category">
         <h3 class="widget-title"><span>All Categories</span></h3>
         <ul class="widget-body filter-items search-ul">
             @foreach($categories as $category)
-                <li><a href="#">{{ $category->name }}</a></li>
+                <li><a href="#" data-category="{{ $category->slug }}">{{ $category->name }}</a></li>
             @endforeach
         </ul>
     </div>

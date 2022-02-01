@@ -15,11 +15,11 @@ class CreateCartItemsTable extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('quantity');
+            $table->unsignedInteger('quantity')->default(0);
             $table->timestamps();
 
             $table->foreignId('cart_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
         });
     }
 

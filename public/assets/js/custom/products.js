@@ -1,24 +1,26 @@
 // On document ready
 $(function ( ) {
     fetchProducts();
+    initEvents();
 });
 
-function setEventsOnProductRefresh() {
-    // Items per page selection
-    $('.shop-content #page_items').change(function ()
+function initEvents() {
+    let shopContentElem = $('body.products .shop-content');
+    // Items per page selector
+    shopContentElem.on('change', '#page_items', function ()
     {
         addParamToUrl('i', this.value);
         removeParamFromUrl('page');
         fetchProducts();
     });
-    // Items sort selection
-    $('.shop-content #page_sort').change(function ()
+    // Item sort type selector
+    shopContentElem.on('change', '#page_sort', function ()
     {
         addParamToUrl('sort', this.value);
         fetchProducts();
     });
-
-    $('.shop-content .pagination li a').click(function(e)
+    // Pagination page selection
+    shopContentElem.on('click', '.pagination li a', function (e)
     {
         e.preventDefault();
         let page = $(this).data('page');
@@ -27,10 +29,9 @@ function setEventsOnProductRefresh() {
             fetchProducts();
             scrollToShopTop();
         }
-    })
-
-
-    $('.shop-content .product-specification li a').click(function ()
+    });
+    // Filter selection
+    shopContentElem.on('click', '.product-specification li a', function ()
     {
         let element =  $(this);
         let listElement = element.parent();
@@ -42,20 +43,32 @@ function setEventsOnProductRefresh() {
         removeParamFromUrl('page');
         addSelectedFiltersToUrl(getSelectedFilters());
         fetchProducts();
-        scrollToShopTop();
+    });
+
+    // Category selection
+    shopContentElem.on('click', '.product-category li a', function (event)
+    {
+        event.preventDefault();
+        let element =  $(this);
+        let category = element.data('category');
+        addParamToUrl('c', category);
+        fetchProducts();
+    });
+
+    // Clear filters selection
+    shopContentElem.on('click', '.filter-clean', function (event)
+    {
+        clearUrlFilterParams();
+        fetchProducts();
     });
 }
 
-function createPagination() {
-    $('.shop-content .pagination').html(
-        '<button data-page="1">1</button><button data-page="2">2</button><button data-page="3">3</button>'
-    )
-    $('.shop-content .pagination button').click(function ()
-    {
-        addParamToUrl('page', $(this).data('page'));
-        scrollToShopTop();
-        fetchProducts();
-    });
+function showProductsLoading() {
+    $('.products .loading-overlay').show();
+}
+
+function hideProductsLoading() {
+    $('.products .loading-overlay').hide();
 }
 
 function removeParamFromUrl(name) {
@@ -74,7 +87,20 @@ function addParamToUrl(name, value) {
 function scrollToShopTop() {
     $([document.documentElement, document.body]).animate({
         scrollTop: $("#shop_content_top").offset().top
-    }, 500);
+    }, 400);
+}
+
+function clearUrlFilterParams() {
+    const keepParams = ['s', 'i', 'sort'];
+    let urlParams = new URLSearchParams(window.location.search);
+    var newUrl = window.location.href.split('?')[0];
+    for (const param of keepParams) {
+        if (urlParams.has(param)) {
+            newUrl = new URL(newUrl);
+            newUrl.searchParams.set(param, urlParams.get(param));
+        }
+    }
+    window.history.replaceState(null, null, newUrl);
 }
 
 function getSelectedFilters() {
@@ -97,7 +123,6 @@ function getSelectedFilters() {
 }
 
 function addSelectedFiltersToUrl(activeFilters) {
-    console.log('here');
     let filterQueryString = "";
     for (const [group, values] of Object.entries(activeFilters)) {
         for (const value of values) {
@@ -137,7 +162,9 @@ function fetchProducts() {
     } catch (e) {
         search = ""
     }
-    let category = urlParams.get('c') ?? '';
+
+    let shopContent = $('.products .shop-content');
+    let category = shopContent.data('category') ?? urlParams.get('c') ?? '';
     let itemsPerPage = urlParams.get('i') ?? 12;
     let page = urlParams.get('page') ?? 1;
     let sort = urlParams.get('sort') ?? "alpha-asc"
@@ -145,8 +172,17 @@ function fetchProducts() {
     let specifications = urlParams.get('f') ?? "";
     let specGroups = urlParams.get('fg') ?? "";
 
+    let type = 1;
+    if (shopContent.data('category')) {
+        type = 2;
+    }
+
+    showProductsLoading();
+
+    let ajaxUrl = shopContent.data('url');
+
     $.ajax({
-        url : "ajax/products",
+        url : ajaxUrl,
         method: 'POST',
         dataType: "json",
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -158,20 +194,24 @@ function fetchProducts() {
             layout: layout,
             sort: sort,
             specifications: specifications,
-            specGroups: specGroups
+            specGroups: specGroups,
+            type: type
         },
         success : function (result){
-            if (result['status']) {
-                $('.shop-content').html(result['content']);
-                Wolmart.init();
-                setEventsOnProductRefresh();
-                //createPagination();
+            if (result['status'] === 'success') {
+                shopContent.html(result['content']);
+                shopContent.find('.product-category ul li a').removeClass('active');
+                shopContent.find('.product-category ul li a[data-category="'+category+'"]').addClass('active');
+                Wolmart.countDown('.product-countdown, .countdown');
+                Wolmart.sidebar('sidebar');                                         // Initialize Sidebar
+                Wolmart.sidebar('right-sidebar');
                 setFiltersSelected(specifications);
             }
+            hideProductsLoading();
         },
         error: function()
         {
-
+            hideProductsLoading();
         }
     });
 }

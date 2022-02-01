@@ -28,7 +28,7 @@
                 <div class="product text-center product-absolute">
                     <figure class="product-media">
                         <a href="{{ route('product', ['product' => $product->slug]) }}">
-                            <img src="{{ $product->photos->first()->photo_path }}" alt="Category image"
+                            <img src="{{ asset('assets/images/store/products/' . $product->thumbnail->photo_path) }}" alt="Category image"
                                  width="130" height="146" style="background-color: #fff" />
                         </a>
                     </figure>

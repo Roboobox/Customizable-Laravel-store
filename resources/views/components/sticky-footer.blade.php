@@ -79,8 +79,8 @@
             <i class="w-icon-search"></i>
             <p>Search</p>
         </a>
-        <form action="#" class="input-wrapper">
-            <input type="text" class="form-control" name="search" autocomplete="off" placeholder="Search"
+        <form method="get" action="{{ route('products') }}" class="input-wrapper">
+            <input type="text" class="form-control" name="s" value="{{ Request::input('s') }}" autocomplete="off" placeholder="Search"
                    required />
             <button class="btn btn-search" type="submit">
                 <i class="w-icon-search"></i>

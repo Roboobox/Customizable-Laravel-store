@@ -1,4 +1,4 @@
-<x-layout body-class="product">
+<x-layout body-class="product-page">
     <x-slot name="customCss">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/animate/animate.min.css') }}">
@@ -12,7 +12,7 @@
             <div class="container">
                 <div class="row gutter-lg">
                     <div class="main-content">
-                        <div class="product product-single row">
+                        <div id="product_container" class="product product-single row">
                             <div class="col-md-6 mb-6">
                                 <div class="product-gallery product-gallery-sticky">
                                     <div class="swiper-container product-single-swiper swiper-theme nav-inner" data-swiper-options="{
@@ -90,24 +90,27 @@
                                     <hr class="product-divider">
 
                                     <div class="product-variation-price">
-                                        <span></span>
+                                        <span id="total_price">{{ $product->price }}</span><span class="currency">$</span>
                                     </div>
 
                                     <div class="fix-bottom product-sticky-content sticky-content">
-                                        <div class="product-form container">
-                                            <div class="product-qty-form">
-                                                <div class="input-group">
-                                                    <input class="quantity form-control" type="number" min="1"
-                                                           max="10000000">
-                                                    <button class="quantity-plus w-icon-plus"></button>
-                                                    <button class="quantity-minus w-icon-minus"></button>
+                                        <form class="form-cart-add" action="{{ route('cart-add') }}" method="POST">
+                                            @csrf
+                                            <div class="product-form container">
+                                                <div class="product-qty-form" data-price="{{ $product->price }}">
+                                                    <div class="input-group">
+                                                        <input class="quantity form-control" name="quantity" type="number" min="1" max="10000000">
+                                                        <button type="button" class="quantity-plus w-icon-plus"></button>
+                                                        <button type="button" class="quantity-minus w-icon-minus"></button>
+                                                    </div>
                                                 </div>
+                                                <input type="hidden" name="product" value="{{ $product->id }}">
+                                                <button type="submit" class="btn btn-primary btn-cart">
+                                                    <i class="w-icon-cart"></i>
+                                                    <span>Add to Cart</span>
+                                                </button>
                                             </div>
-                                            <button class="btn btn-primary btn-cart">
-                                                <i class="w-icon-cart"></i>
-                                                <span>Add to Cart</span>
-                                            </button>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

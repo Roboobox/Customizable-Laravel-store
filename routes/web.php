@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountDetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +28,29 @@ Route::get('/product/{product:slug}', [ProductController::class, 'show'])
 Route::get('/products', [ProductController::class, 'index'])
     ->name("products");
 
+Route::get('/c/{category:slug}', [ProductController::class, 'indexCategory'])
+    ->name("products-category");
+
 Route::post('ajax/products', [ProductController::class, 'search'])
     ->name("ajax-products");
 
-Route::get('/cart', function () {
-    return view('cart');
-})->name("cart");
+Route::post('/cart_add', [CartItemController::class, 'store'])
+    ->name("cart-add");
+
+Route::post('/cart_get_summary', [CartController::class, 'indexSummary'])
+    ->name("cart-get-summary");
+
+Route::post('/cart_get', [CartController::class, 'indexCartContainer'])
+    ->name("cart-get");
+
+Route::post('/cart_remove/{product}', [CartItemController::class, 'destroy'])
+    ->name("cart-remove");
+
+Route::post('/cart_update/{product}', [CartItemController::class, 'update'])
+    ->name("cart-update");
+
+Route::get('/cart', [CartController::class, 'index'])
+    ->name("cart");
 
 Route::get('/checkout', function () {
     return view('checkout');
@@ -74,7 +93,7 @@ Route::get('/account/details', function () {
 })->name("account-details")->middleware('auth');
 
 Route::post('/account/details', [AccountDetailController::class, 'store'])
-    ->name("account-details")
+    ->name("account-details-save")
     ->middleware('auth');
 
 Route::post('/change-password', [ChangePasswordController::class, 'store'])
@@ -94,7 +113,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 // TODO : Remove
-Route::get('/test', [ProductController::class, 'test'])
+Route::get('/test', [CartController::class, 'index'])
     ->name("test");
 
 require __DIR__.'/auth.php';

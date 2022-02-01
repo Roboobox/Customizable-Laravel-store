@@ -15,7 +15,7 @@ class HomeController extends Controller
 
         $recentlyViewed = [];
         if (Auth::check()) {
-            $recentlyViewed = ViewHistory::latest()->take(10)->with(['product:name,id,slug', 'product.photos:photo_path,product_id'])->get();
+            $recentlyViewed = ViewHistory::latest()->take(10)->with(['product:name,id,slug', 'product.thumbnail'])->get(['product_id'])->unique('product_id');
         }
         // TODO : Add recently viewed items from session
 

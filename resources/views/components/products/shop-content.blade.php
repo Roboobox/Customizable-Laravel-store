@@ -61,36 +61,28 @@
                 </div>
             </div>
         </nav>
-        <div class="product-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-2">
+        @if(count($products))
+            <div class="product-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-2">
             @foreach($products as $product)
                 <x-products.product-card :product="$product"></x-products.product-card>
             @endforeach
-        </div>
+        @else
+            <div class="product-wrapper row">
+                <div class="alert alert-simple alert-inline text-center mt-3">
+                    <div class="alert-title">
+                        <div class="text-uppercase" style="font-size: 1.6rem; font-weight: 800">No products were found that match criteria</div>
+                        <div class="font-weight-normal">Try to change search criteria</div>
+                        <a href="{{ route('products') }}" class="btn btn-primary btn-link text-normal mt-3">
+                            View all products
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
+            </div>
 
         <div class="toolbox toolbox-pagination justify-content-between">
-{{--            <p class="showing-info mb-2 mb-sm-0">--}}
-{{--                Showing<span>1-12 of 60</span>Products--}}
-{{--            </p>--}}
-{{--            {{ $products->withQueryString()->links('vendor.pagination.custom-pagination') }}--}}
             {{ $products->withQueryString()->links('vendor.pagination.custom-pagination') }}
-{{--            <ul class="pagination">--}}
-{{--                <li class="prev disabled">--}}
-{{--                    <a href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">--}}
-{{--                        <i class="w-icon-long-arrow-left"></i>Prev--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--                <li class="page-item active">--}}
-{{--                    <a class="page-link" href="#">1</a>--}}
-{{--                </li>--}}
-{{--                <li class="page-item">--}}
-{{--                    <a class="page-link" href="#">2</a>--}}
-{{--                </li>--}}
-{{--                <li class="next">--}}
-{{--                    <a href="#" aria-label="Next">--}}
-{{--                        Next<i class="w-icon-long-arrow-right"></i>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
         </div>
     </div>
     <!-- End of Shop Main Content -->

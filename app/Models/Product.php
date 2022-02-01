@@ -69,6 +69,10 @@ class Product extends Model
         return $this->price;
     }
 
+    public function getSubtotal($quantity) {
+        return number_format(($this->price * $quantity), 2, '.', '');
+    }
+
     public function category()
     {
         return $this->belongsTo(ProductCategory::class);
@@ -77,6 +81,11 @@ class Product extends Model
     public function photos()
     {
         return $this->hasMany(ProductPhoto::class, 'product_id');
+    }
+
+    public function thumbnail()
+    {
+        return $this->hasOne(ProductPhoto::first());
     }
 
     public function specifications()

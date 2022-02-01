@@ -1,9 +1,10 @@
 <!-- Start of Header -->
+@props(['productCategories', 'cartItemCount'])
 <header class="header">
     <div class="header-top">
         <div class="container">
             <div class="header-left">
-                <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                <p class="welcome-msg">Welcome to the store!</p>
             </div>
             <div class="header-right">
                 <div class="dropdown">
@@ -61,11 +62,11 @@
                         <select id="category" name="c">
                             <option value="" selected>All Categories</option>
                             @foreach($productCategories as $category)
-                                <option value="{{ $category->slug }}">{{ $category->name }}</option>
+                                <option {{ Request::input('c') == $category->slug ? 'selected' : '' }} value="{{ $category->slug }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
-                    <input type="text" class="form-control" name="s" id="search" placeholder="Search in..."
+                    <input type="text" class="form-control" name="s" value="{{ Request::input('s') }}" id="search" placeholder="Search in..."
                            required />
                     <button class="btn btn-search" type="submit"><i class="w-icon-search"></i>
                     </button>
@@ -85,68 +86,18 @@
                     <div class="cart-overlay"></div>
                     <a href="#" class="cart-toggle label-down link">
                         <i class="w-icon-cart">
-                            <span class="cart-count">2</span>
+                            <span class="cart-count">{{ $cartItemCount ?? 0 }}</span>
                         </i>
                         <span class="cart-label">Cart</span>
+                        <input type="hidden" value="{{ route('cart-get-summary') }}">
                     </a>
                     <div class="dropdown-box">
                         <div class="cart-header">
                             <span>Shopping Cart</span>
                             <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
                         </div>
+                        <div class="cart-summary-container">
 
-                        <div class="products">
-                            <div class="product product-cart">
-                                <div class="product-detail">
-                                    <a href="{{ route('products') }}" class="product-name">Beige knitted
-                                        elas<br>tic
-                                        runner shoes</a>
-                                    <div class="price-box">
-                                        <span class="product-quantity">1</span>
-                                        <span class="product-price">$25.68</span>
-                                    </div>
-                                </div>
-                                <figure class="product-media">
-                                    <a href="{{ route('products') }}">
-                                        <img src="{{ asset('assets/images/cart/product-1.jpg') }}" alt="product" height="84"
-                                             width="94" />
-                                    </a>
-                                </figure>
-                                <button class="btn btn-link btn-close" aria-label="button">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-
-                            <div class="product product-cart">
-                                <div class="product-detail">
-                                    <a href="{{ route('products') }}" class="product-name">Blue utility
-                                        pina<br>fore
-                                        denim dress</a>
-                                    <div class="price-box">
-                                        <span class="product-quantity">1</span>
-                                        <span class="product-price">$32.99</span>
-                                    </div>
-                                </div>
-                                <figure class="product-media">
-                                    <a href="{{ route('products') }}">
-                                        <img src="{{ asset('assets/images/cart/product-2.jpg') }}" alt="product" width="84"
-                                             height="94" />
-                                    </a>
-                                </figure>
-                                <button class="btn btn-link btn-close" aria-label="button">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="cart-total">
-                            <label>Subtotal:</label>
-                            <span class="price">$58.67</span>
-                        </div>
-
-                        <div class="cart-action">
-                            <a href="{{ route('cart') }}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
-                            <a href="{{ route('checkout') }}" class="btn btn-primary  btn-rounded">Checkout</a>
                         </div>
                     </div>
                     <!-- End of Dropdown Box -->
@@ -172,66 +123,11 @@
                             <ul class="menu vertical-menu category-menu">
                                 @foreach($productCategories as $productCategory)
                                     <li>
-                                        <a href="{{ route('products') . '?c=' . $productCategory->slug }}">
+                                        <a href="{{ route('products-category', ['category' => $productCategory->slug])}}">
                                             <i class="w-icon-heartbeat"></i>{{ $productCategory->name }}
                                         </a>
                                     </li>
                                 @endforeach
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-tshirt2"></i>Fashion--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-home"></i>Home & Garden--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-electronics"></i>Electronics--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-furniture"></i>Furniture--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-heartbeat"></i>Healthy & Beauty--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-gift"></i>Gift Ideas--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-gamepad"></i>Toy & Games--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-ice-cream"></i>Cooking--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-ios"></i>Smart Phones--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-camera"></i>Cameras & Photo--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
-{{--                                <li>--}}
-{{--                                    <a href="{{ route('products') }}">--}}
-{{--                                        <i class="w-icon-ruby"></i>Accessories--}}
-{{--                                    </a>--}}
-{{--                                </li>--}}
                                 <li>
                                     <a href="{{ route('products') }}"
                                        class="font-weight-bold text-primary text-uppercase ls-25">
@@ -243,26 +139,12 @@
                     </div>
                     <nav class="main-nav">
                         <ul class="menu active-underline">
-                            <li class="{{ Route::is('home') ? 'active' : '' }}">
-                                <a href="{{ route('home') }}">Home</a>
-                            </li>
-                            <li class="{{ Route::is('products') ? 'active' : '' }}">
-                                <a href="{{ route('products') }}">Products</a>
-                            </li>
-                            <li class="{{ Route::is('technology') ? 'active' : '' }}">
-                                <a href="{{ route('coming-soon') }}">Technology</a>
-                                <ul>
-                                    <li><a href="{{ route('coming-soon') }}">Body adjust technology</a></li>
-                                    <li><a href="{{ route('coming-soon') }}">Scientific tests</a></li>
-                                    <li><a href="{{ route('coming-soon') }}">Features</a></li>
-                                </ul>
-                            </li>
+                            <x-header.header-pages></x-header.header-pages>
                         </ul>
                     </nav>
                 </div>
                 <div class="header-right">
-                    <a href="#" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
-                    <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
+                    <a href="{{ route('orders') }}" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
                 </div>
             </div>
         </div>
