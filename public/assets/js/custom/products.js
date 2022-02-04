@@ -26,8 +26,7 @@ function initEvents() {
         let page = $(this).data('page');
         if (page) {
             addParamToUrl('page', page);
-            fetchProducts();
-            scrollToShopTop();
+            fetchProducts(true);
         }
     });
     // Filter selection
@@ -151,7 +150,7 @@ function setFiltersSelected(urlFilters) {
 }
 
 
-function fetchProducts() {
+function fetchProducts(scrollToTop = false) {
     const urlQuery = window.location.search;
     const urlParams = new URLSearchParams(urlQuery);
 
@@ -206,6 +205,10 @@ function fetchProducts() {
                 Wolmart.sidebar('sidebar');                                         // Initialize Sidebar
                 Wolmart.sidebar('right-sidebar');
                 setFiltersSelected(specifications);
+                if (scrollToTop)
+                {
+                    scrollToShopTop();
+                }
             }
             hideProductsLoading();
         },

@@ -14,6 +14,7 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
+
     /**
      * Seed the application's database.
      *
@@ -25,37 +26,8 @@ class DatabaseSeeder extends Seeder
         // Make clients
         Clients::factory(15)->create();
 
-        ProductCategory::create(['name' => 'DRAGON']);
-        ProductCategory::create(['name' => 'HB']);
-        ProductCategory::create(['name' => 'RUS']);
-        ProductCategory::create(['name' => 'SOMATROP']);
-        ProductCategory::create(['name' => 'VIT']);
-
-
-//        // Create categories
-//        $categories = ProductCategory::factory(5)->create();
-//
-//        // Create products with previously created category picked at random
-//        $products = [];
-//        for ($i = 0; $i < 20; $i++) {
-//            $products[] = Product::factory()->create(['category_id' => $categories->random()]);
-//        }
-//        $products = collect($products);
-//
-//        // Create specifications and photo for each product
-//        $products->each(function ($product) use ($products) {
-//            ProductSpecification::factory(5)->create(['product_id' => $product->id]);
-//            ProductPhoto::factory()->create(['product_id' => $product->id]);
-//        });
-//
-//        // Create discounts
-//        ProductDiscount::factory()->create(['product_id' => $products->random()]);
-//        ProductDiscount::factory()->create(['product_id' => $products->random()]);
-//
-//        // Create view history
-//        for ($i = 0; $i < 10; $i++) {
-//            ViewHistory::factory()->create(['product_id' => $products->random(), 'user_id' => $user->id]);
-//        }
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            ProductSeeder::class,
+        ]);
     }
 }

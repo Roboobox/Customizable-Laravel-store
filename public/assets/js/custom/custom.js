@@ -37,11 +37,12 @@ $(function ( ) {
 
 function initProductPage() {
     let productPageElem = $('.product-page');
-    productPageElem.on('click', '.quantity-plus, .quantity-minus', updateProductTotalPrice);
+    productPageElem.on('click touchend', '.quantity-plus, .quantity-minus', updateProductTotalPrice);
     productPageElem.on('change', 'input.quantity', updateProductTotalPrice);
 }
 
 function updateProductTotalPrice() {
+    console.log('here');
     let quantity = $('.product-page input.quantity');
     validateProductQuantity('.product-page input.quantity');
     let productPrice = $('.product-page form .product-qty-form').data('price');

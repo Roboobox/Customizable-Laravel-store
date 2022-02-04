@@ -37,7 +37,7 @@ class LoginRequest extends FormRequest
     /**
      * Attempt to authenticate the request's credentials.
      *
-     * @return void
+     *
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -50,7 +50,7 @@ class LoginRequest extends FormRequest
 
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
-            ]);
+            ])->redirectTo('auth');
         }
 
         RateLimiter::clear($this->throttleKey());

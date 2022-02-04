@@ -20,8 +20,6 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Clients::factory(15)->create();
-
         SpecificationLabel::create(['label' => 'Form']);
         SpecificationLabel::create(['label' => 'Capacity']);
         SpecificationLabel::create(['label' => 'Dosage']);
