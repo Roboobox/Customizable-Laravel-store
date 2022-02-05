@@ -1165,24 +1165,24 @@ window.Wolmart = {};
     Wolmart.initPopup = function (options, preset) {
 
         // Newsletter popup
-        if (Wolmart.$body.hasClass('home') && Wolmart.getCookie('hideNewsletterPopup') !== 'true') {
-            setTimeout(function () {
-                Wolmart.popup({
-                    items: {
-                        src: ".newsletter-popup"
-                    },
-                    type: 'inline',
-                    tLoading: '',
-                    mainClass: 'mfp-newsletter mfp-fadein-popup',
-                    callbacks: {
-                        beforeClose: function () {
-                            // if "do not show" is checked
-                            $('#hide-newsletter-popup')[0].checked && Wolmart.setCookie('hideNewsletterPopup', true, 7);
-                        }
-                    },
-                });
-            }, 7500);
-        }
+        // if (Wolmart.$body.hasClass('home') && Wolmart.getCookie('hideNewsletterPopup') !== 'true') {
+        //     setTimeout(function () {
+        //         Wolmart.popup({
+        //             items: {
+        //                 src: ".newsletter-popup"
+        //             },
+        //             type: 'inline',
+        //             tLoading: '',
+        //             mainClass: 'mfp-newsletter mfp-fadein-popup',
+        //             callbacks: {
+        //                 beforeClose: function () {
+        //                     // if "do not show" is checked
+        //                     $('#hide-newsletter-popup')[0].checked && Wolmart.setCookie('hideNewsletterPopup', true, 7);
+        //                 }
+        //             },
+        //         });
+        //     }, 7500);
+        // }
 
         // Video popup
         Wolmart.$body.on('click', '.btn-iframe', function (e) {
@@ -1416,6 +1416,8 @@ window.Wolmart = {};
 
     Wolmart.headerToggleSearch = function (selector) {
         var $search = Wolmart.$(selector);
+        var $searchForm = $(selector + ' #sticky-footer-search');
+        var $searchFormButton = $(selector + ' #sticky-footer-search .btn-search');
         Wolmart.$body.on('click', '.hs-toggle .search-toggle', function (e) {
             e.preventDefault();
         });
@@ -1429,6 +1431,9 @@ window.Wolmart = {};
             $search.on('click', function (e) {
                 e.preventDefault();
                 e.stopPropagation();
+            })
+            $searchFormButton.on('click touchend', function (e) {
+                $searchForm.submit();
             })
         } else {
             $search.find('.form-control').on('focusin', function (e) {

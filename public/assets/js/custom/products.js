@@ -45,14 +45,14 @@ function initEvents() {
     });
 
     // Category selection
-    shopContentElem.on('click', '.product-category li a', function (event)
-    {
-        event.preventDefault();
-        let element =  $(this);
-        let category = element.data('category');
-        addParamToUrl('c', category);
-        fetchProducts();
-    });
+    // shopContentElem.on('click', '.product-category li a', function (event)
+    // {
+    //     event.preventDefault();
+    //     let element =  $(this);
+    //     let category = element.data('category');
+    //     addParamToUrl('c', category);
+    //     fetchProducts();
+    // });
 
     // Clear filters selection
     shopContentElem.on('click', '.filter-clean', function (event)
@@ -163,7 +163,7 @@ function fetchProducts(scrollToTop = false) {
     }
 
     let shopContent = $('.products .shop-content');
-    let category = shopContent.data('category') ?? urlParams.get('c') ?? '';
+    let category = shopContent.data('category') ?? '';
     let itemsPerPage = urlParams.get('i') ?? 12;
     let page = urlParams.get('page') ?? 1;
     let sort = urlParams.get('sort') ?? "alpha-asc"
@@ -204,6 +204,7 @@ function fetchProducts(scrollToTop = false) {
                 Wolmart.countDown('.product-countdown, .countdown');
                 Wolmart.sidebar('sidebar');                                         // Initialize Sidebar
                 Wolmart.sidebar('right-sidebar');
+                Wolmart.menu.init();
                 setFiltersSelected(specifications);
                 if (scrollToTop)
                 {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBannersTable extends Migration
+class CreateStoreSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateBannersTable extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('store_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('photo')->nullable();
-            $table->text('html')->nullable();
-            $table->string('url')->nullable();
-            $table->timestamps();
+            $table->string('value');
+
+            $table->foreignId('setting_type_id')->constrained('store_setting_types');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateBannersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('store_settings');
     }
 }

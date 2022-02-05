@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Clients;
+use App\Models\Banner;
+use App\Models\BenefitBanner;
 use App\Models\ViewHistory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -11,7 +12,8 @@ class HomeController extends Controller
 {
     public function create()
     {
-        $clients = Clients::all();
+        $banner = Banner::latest()->take(1)->first();
+        $benefitBanners = BenefitBanner::all();
 
         $recentlyViewed = [];
         if (Auth::check()) {
@@ -20,8 +22,9 @@ class HomeController extends Controller
         // TODO : Add recently viewed items from session
 
         return view('home', [
-            'clients' => $clients,
             'recentlyViewed' => $recentlyViewed,
+            'banner' => $banner,
+            'benefitBanners' => $benefitBanners,
         ]);
     }
 }

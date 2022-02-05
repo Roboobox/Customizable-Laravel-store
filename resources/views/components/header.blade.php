@@ -1,40 +1,14 @@
 <!-- Start of Header -->
-@props(['productCategories', 'cartItemCount'])
+@props(['productCategories', 'cartItemCount', 'storeSettings'])
 <header class="header">
     <div class="header-top">
         <div class="container">
             <div class="header-left">
-                <p class="welcome-msg">Welcome to the store!</p>
             </div>
             <div class="header-right">
-                <div class="dropdown">
-                    <a href="#currency">USD</a>
-                    <div class="dropdown-box">
-                        <a href="#USD">USD</a>
-                        <a href="#EUR">EUR</a>
-                    </div>
-                </div>
-                <!-- End of DropDown Menu -->
-
-                <div class="dropdown">
-                    <a href="#language"><img src="{{ asset('assets/images/flags/eng.png') }}" alt="ENG Flag" width="14"
-                                             height="8" class="dropdown-image" /> ENG</a>
-                    <div class="dropdown-box">
-                        <a href="#ENG">
-                            <img src="{{ asset('assets/images/flags/eng.png') }}" alt="ENG Flag" width="14" height="8"
-                                 class="dropdown-image" />
-                            ENG
-                        </a>
-                        <a href="#FRA">
-                            <img src="{{ asset('assets/images/flags/fra.png') }}" alt="FRA Flag" width="14" height="8"
-                                 class="dropdown-image" />
-                            FRA
-                        </a>
-                    </div>
-                </div>
                 <!-- End of Dropdown Menu -->
+                <a href="{{ route('contact') }}" class="d-lg-show header-contact-us">Contact Us</a>
                 <span class="divider d-lg-show"></span>
-                <a href="{{ route('contact') }}" class="d-lg-show">Contact Us</a>
                 @auth
                     <a href="{{ route('account') }}" class="d-lg-show">My Account</a>
                 @else
@@ -73,14 +47,20 @@
                 </form>
             </div>
             <div class="header-right ml-4">
+                @if($storeSettings->get('email') || $storeSettings->get('phone'))
                 <div class="header-call d-xs-show d-lg-flex align-items-center">
-                    <a href="tel:#" class="w-icon-call"></a>
                     <div class="call-info d-lg-show">
+                        @if($storeSettings->get('email'))
                         <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
-                            <a href="mailto:#" class="text-capitalize">Email us</a> or :</h4>
-                        <a href="tel:#" class="phone-number font-weight-bolder ls-50">0(800)123-456</a>
+                            <a href="mailto:{{ $storeSettings->get('email')->value }}">{{ $storeSettings->get('email')->value }}</a>
+                        </h4>
+                        @endif
+                        @if($storeSettings->get('phone'))
+                        <a href="tel:{{ $storeSettings->get('phone')->value }}" class="phone-number font-weight-bolder ls-50">{{ $storeSettings->get('phone')->value }}</a>
+                        @endif
                     </div>
                 </div>
+                @endunless
 
                 <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                     <div class="cart-overlay"></div>

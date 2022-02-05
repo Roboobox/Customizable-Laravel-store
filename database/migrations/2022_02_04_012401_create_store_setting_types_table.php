@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientsTable extends Migration
+class CreateStoreSettingTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('store_setting_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('site', 500);
-            $table->string('logo', 500);
-            $table->timestamps();
+            $table->string('type', 25)->unique();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('store_setting_types');
     }
 }

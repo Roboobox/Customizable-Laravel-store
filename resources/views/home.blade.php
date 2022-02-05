@@ -5,17 +5,17 @@
     </x-slot>
 
     <x-slot name="main">
-        <x-intro-section></x-intro-section>
+        <x-intro-section :banner="$banner"></x-intro-section>
 
+        @if(!empty($benefitBanners))
         <div class="container">
-            <x-benefit-banner></x-benefit-banner>
-            <x-deal-banner></x-deal-banner>
+            <x-benefit-banner :benefit-banners="$benefitBanners"></x-benefit-banner>
         </div>
+        @endif
 
         <x-top-categories-banner></x-top-categories-banner>
 
         <div class="container">
-            <x-clients-banner :clients="$clients"></x-clients-banner>
             @if(!empty($recentlyViewed))
                 <x-recent-views-banner :recently-viewed="$recentlyViewed"></x-recent-views-banner>
             @endif

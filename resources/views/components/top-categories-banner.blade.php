@@ -1,6 +1,6 @@
 <section class="category-section top-category bg-grey pt-10 pb-10 appear-animate">
     <div class="container pb-2">
-        <h2 class="title justify-content-center pt-1 ls-normal mb-5">Top Categories Of The Month</h2>
+        <h2 class="title justify-content-center pt-1 ls-normal mb-5">Top products sold this month</h2>
         <div class="swiper">
             <div class="swiper-container swiper-theme pg-show" data-swiper-options="{
                 'spaceBetween': 20,

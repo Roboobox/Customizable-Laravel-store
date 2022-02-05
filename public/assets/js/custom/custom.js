@@ -31,6 +31,10 @@ $(function ( ) {
         });
     });
 
+    // Wolmart.$body.on('click', '#sticky-footer-search', function (e) {
+    //     console.log('test');
+    // });
+
     initProductPage();
 
 });

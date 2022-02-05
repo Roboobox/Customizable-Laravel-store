@@ -10,19 +10,17 @@
 <body class="{{ $bodyClass }}">
     <h1 class="d-none">Wolmart - Responsive Marketplace HTML Template</h1>
     <div class="page-wrapper">
-        <x-header :product-categories="$productCategories" :cart-item-count="$cartItemCount"></x-header>
-
+        <x-header :storeSettings="$storeSettings" :product-categories="$productCategories" :cart-item-count="$cartItemCount"></x-header>
         <main class="main">
             {{ $main }}
         </main>
 
-        <x-footer></x-footer>
+        <x-footer :storeSettings="$storeSettings"></x-footer>
     </div>
 
     <x-sticky-footer></x-sticky-footer>
     <x-scroll-top></x-scroll-top>
     <x-mobile-menu :product-categories="$productCategories"></x-mobile-menu>
-    <x-newsletter-popup></x-newsletter-popup>
     <x-quick-view></x-quick-view>
 
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>

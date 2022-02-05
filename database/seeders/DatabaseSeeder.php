@@ -2,14 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Clients;
-use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\ProductDiscount;
-use App\Models\ProductPhoto;
-use App\Models\ProductSpecification;
+use App\Models\StoreSettingTypes;
 use App\Models\User;
-use App\Models\ViewHistory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,11 +17,26 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = User::factory()->create(['email' => 'test@email.com']);
-        // Make clients
-        Clients::factory(15)->create();
+
+        // Store setting types
+        StoreSettingTypes::create(['type' => 'phone']);
+        StoreSettingTypes::create(['type' => 'email']);
+        StoreSettingTypes::create(['type' => 'address']);
+        StoreSettingTypes::create(['type' => 'logo_path']);
+        StoreSettingTypes::create(['type' => 'main_banner_image']);
+        StoreSettingTypes::create(['type' => 'main_banner_html']);
+        StoreSettingTypes::create(['type' => 'soc_facebook']);
+        StoreSettingTypes::create(['type' => 'soc_instagram']);
+        StoreSettingTypes::create(['type' => 'soc_twitter']);
+        StoreSettingTypes::create(['type' => 'soc_pinterest']);
+        StoreSettingTypes::create(['type' => 'soc_youtube']);
+
 
         $this->call([
             ProductSeeder::class,
+            StoreSettingSeeder::class,
+            BannerSeeder::class,
+            BenefitBannerSeeder::class,
         ]);
     }
 }

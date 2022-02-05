@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\CartItemController;
-use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\ProductCategory;
-use Illuminate\Pagination\Paginator;
+use App\Models\StoreSettings;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -45,7 +43,30 @@ class AppServiceProvider extends ServiceProvider
             } else {
                 $cartItemCount = 0;
             }
-            $view->with(['productCategories' => $categories, 'cartItemCount' => $cartItemCount]);
+
+
+            $storeSettings = StoreSettings::whereIn('setting_type_id', function ($query) {
+                $query->select('id')->from('store_setting_types')->whereIn('type', [
+                    'phone',
+                    'email',
+                    'soc_facebook',
+                    'soc_instagram',
+                    'soc_pinterest',
+                    'soc_twitter',
+                    'soc_youtube'
+                ]);
+            })
+                ->select(['type','value'])
+                ->leftJoin('store_setting_types', 'store_setting_types.id', '=', 'setting_type_id')
+                ->get()
+                ->keyBy('type');
+
+
+            $view->with([
+                'productCategories' => $categories,
+                'cartItemCount' => $cartItemCount,
+                'storeSettings' => $storeSettings,
+            ]);
         });
     }
 }

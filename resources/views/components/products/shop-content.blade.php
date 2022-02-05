@@ -1,13 +1,9 @@
 @props(['products', 'itemsPerPage', 'sort', 'specifications', 'categories'])
-    <!-- Start of Sidebar, Shop Sidebar -->
     <aside class="sidebar shop-sidebar sticky-sidebar-wrapper sidebar-fixed">
-        <!-- Start of Sidebar Overlay -->
         <div class="sidebar-overlay"></div>
         <a class="sidebar-close" href="#"><i class="close-icon"></i></a>
 
-        <!-- Start of Sidebar Content -->
         <div class="sidebar-content scrollable">
-            <!-- Start of Sticky Sidebar -->
             <div class="sticky-sidebar">
                 <div class="filter-actions">
                     <label>Filter :</label>
@@ -15,13 +11,9 @@
                 </div>
                 <x-products.specification-filters :specifications="$specifications" :categories="$categories"></x-products.specification-filters>
             </div>
-            <!-- End of Sidebar Content -->
         </div>
-        <!-- End of Sidebar Content -->
     </aside>
-    <!-- End of Shop Sidebar -->
 
-    <!-- Start of Shop Main Content -->
     <div class="main-content">
         <nav class="toolbox sticky-toolbox sticky-content fix-top">
             <div class="toolbox-left">
@@ -62,10 +54,7 @@
             </div>
         </nav>
         @if(count($products))
-            <div class="product-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-2">
-            @foreach($products as $product)
-                <x-products.product-card :product="$product"></x-products.product-card>
-            @endforeach
+            <x-products.products-list :products="$products"></x-products.products-list>
         @else
             <div class="product-wrapper row">
                 <div class="alert alert-simple alert-inline text-center mt-3">
@@ -85,4 +74,3 @@
             {{ $products->withQueryString()->links('vendor.pagination.custom-pagination') }}
         </div>
     </div>
-    <!-- End of Shop Main Content -->

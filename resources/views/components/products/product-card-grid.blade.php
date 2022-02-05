@@ -14,16 +14,6 @@
                         00:00:00:00</div>
                 </div>
             @endif
-{{--            <div class="product-action-horizontal">--}}
-{{--                <a href="#" class="btn-product-icon btn-cart w-icon-cart"--}}
-{{--                   title="Add to cart"></a>--}}
-{{--                <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"--}}
-{{--                   title="Wishlist"></a>--}}
-{{--                <a href="#" class="btn-product-icon btn-compare w-icon-compare"--}}
-{{--                   title="Compare"></a>--}}
-{{--                <a href="#" class="btn-product-icon btn-quickview w-icon-search"--}}
-{{--                   title="Quick View"></a>--}}
-{{--            </div>--}}
         </figure>
         <div class="product-details">
             <div class="product-cat">
@@ -43,7 +33,6 @@
                 @endif
                 </div>
             </div>
-{{--            <x-products.text-specification :product="$product"></x-products.text-specification>--}}
         </div>
     </div>
 </div>
