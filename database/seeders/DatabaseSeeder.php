@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AccountType;
 use App\Models\StoreSettingTypes;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -16,8 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create(['email' => 'test@email.com']);
-
         // Store setting types
         StoreSettingTypes::create(['type' => 'phone']);
         StoreSettingTypes::create(['type' => 'email']);
@@ -31,6 +30,11 @@ class DatabaseSeeder extends Seeder
         StoreSettingTypes::create(['type' => 'soc_pinterest']);
         StoreSettingTypes::create(['type' => 'soc_youtube']);
 
+        AccountType::create(['id' => 1, 'type' => 'default']);
+        AccountType::create(['id' => 2, 'type' => 'google']);
+        AccountType::create(['id' => 3, 'type' => 'facebook']);
+
+        $user = User::factory()->create(['email' => 'test@email.com']);
 
         $this->call([
             ProductSeeder::class,

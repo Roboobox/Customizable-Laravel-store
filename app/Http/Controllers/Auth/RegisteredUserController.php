@@ -9,6 +9,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -34,7 +35,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $validator = \Validator::make($request->all(), [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->where(function ($query) {
+                return $query->where('account_type_id', 1);
+            })],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'tos' => ['accepted']
         ],

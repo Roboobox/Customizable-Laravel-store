@@ -19,8 +19,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
+        'account_type_id',
+        'email_verified_at'
     ];
 
     /**
@@ -55,5 +58,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function accountType()
+    {
+        return $this->belongsTo(AccountType::class, 'account_type_id');
     }
 }

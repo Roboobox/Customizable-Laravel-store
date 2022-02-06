@@ -69,8 +69,13 @@
                         </div>
                     @enderror
                     <div class="invalid-feedback general"></div>
-                    <button type="submit" class="w-100 btn btn-primary">Sign In</button>
+                    <button type="submit" class="w-100 btn btn-primary">Sign Up</button>
                 </form>
+            </div>
+            <p class="text-center">Sign in with social account</p>
+            <div class="social-icons social-icon-border-color d-flex justify-content-center">
+                <a href="{{ route('login.social', ['provider' => 'facebook']) }}" class="social-icon social-facebook w-icon-facebook"></a>
+                <a href="{{ route('login.social', ['provider' => 'google']) }}" class="social-icon social-google fab fa-google"></a>
             </div>
         </div>
     </div>

@@ -20,11 +20,15 @@ class CreateUsersTable extends Migration
             $table->string('mobile', 31)->nullable();
             $table->string('product_layout')->nullable();
             $table->string('product_sort')->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            // Password can be null on social login accounts only
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreignId('account_type_id')->default(1)->constrained('account_types');
+            $table->unique(['email', 'account_type_id']);
         });
     }
 
