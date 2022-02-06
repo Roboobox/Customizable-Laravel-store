@@ -79,6 +79,7 @@ function updateCart() {
             if (result['status'] === 'success') {
                 if (result['content'] !== undefined) {
                     $('.cart-page .cart table.cart-table tbody').html(result['content']);
+                    $('.cart-page .cart #cart_subtotal').text('$' + result['total']);
                     $('.cart-dropdown .cart-count').text(result['count']);
                     Wolmart.initQtyInput('.quantity');
                     initCartItemDelete();

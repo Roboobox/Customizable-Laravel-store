@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
             if (!$firstline) {
                 $category = ProductCategory::where('name', $data[0])->first();
                 if (!$category) {
-                    $category = ProductCategory::create(['name' => $data[0]]);
+                    $category = ProductCategory::create(['name' => $data[0], 'icon' => 'w-icon-heartbeat']);
                 }
                 $product = Product::factory([
                     "name" => $data['4'],

@@ -29,5 +29,10 @@ class StoreSettingSeeder extends Seeder
             'setting_type_id' => StoreSettingTypes::where('type', 'soc_twitter')->first()->id,
             'value' => 'https://twitter.com/'
         ]);
+
+        StoreSettings::create([
+            'setting_type_id' => StoreSettingTypes::where('type', 'logo_file')->first()->id,
+            'value' => 'logo.png'
+        ]);
     }
 }

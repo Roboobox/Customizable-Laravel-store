@@ -87,6 +87,9 @@ header .header-contact-us {
   height: 155px;
   object-fit: cover !important;
 }
+.home #recently_viewed .product-category {
+  color: #bfbfbf;
+}
 .home .intro-section .banner-content h5 {
   font-weight: normal;
   color: #666;
@@ -104,15 +107,25 @@ header .header-contact-us {
   color: #f77c29;
 }
 
-.verify-email .verify-popup {
+.verify-email .popup-window, .forgot-password .popup-window {
   margin: 4.2rem auto 5rem;
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 50rem;
   padding: 3.3rem 5rem 2.6rem;
 }
-.verify-email .verify-popup .verify-icon {
+.verify-email .popup-window .popup-window-icon, .forgot-password .popup-window .popup-window-icon {
   font-size: 6rem;
+}
+.verify-email .alert, .forgot-password .alert {
+  text-align: left;
+}
+.verify-email .alert ul, .forgot-password .alert ul {
+  padding-left: 1rem;
+}
+.verify-email .alert ul li:before, .forgot-password .alert ul li:before {
+  content: none;
+  left: 0;
 }
 
 /*# sourceMappingURL=custom.css.map */

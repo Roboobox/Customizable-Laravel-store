@@ -53,7 +53,8 @@ class AppServiceProvider extends ServiceProvider
                     'soc_instagram',
                     'soc_pinterest',
                     'soc_twitter',
-                    'soc_youtube'
+                    'soc_youtube',
+                    'logo_file',
                 ]);
             })
                 ->select(['type','value'])

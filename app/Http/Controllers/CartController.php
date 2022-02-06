@@ -41,10 +41,16 @@ class CartController extends Controller
            'cartItems' => $cart->cartItems,
         ])->render();
 
+        $total = 0.00;
+        foreach ($cart->cartItems as $item) {
+            $total += $item->product->price * $item->quantity;
+        }
+
         // Return JSON response
         return response()->json([
             'status' => 'success',
             'content' => $view,
+            'total' => number_format($total, 2, '.', ''),
             'count' => count($cart->cartItems),
         ]);
     }

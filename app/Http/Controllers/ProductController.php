@@ -32,10 +32,17 @@ class ProductController extends Controller
                 'user_id' => auth()->user()->id
             ] );
         } else {
-//            if (!session()->has('viewHistory')) {
-//                session()->put('viewHistory', array());
-//            }
-//            $viewHistory = session('viewHistory');
+            if (!session()->has('viewHistory')) {
+                session()->put('viewHistory', array());
+            }
+            $viewHistory = session('viewHistory');
+            if (!in_array($product->id, $viewHistory)) {
+                if (count($viewHistory) >= 10) {
+                    array_pop($viewHistory);
+                }
+                $viewHistory[] = $product->id;
+                session()->put('viewHistory', $viewHistory);
+            }
         }
         return view('product', [
             'product' => $product->load(['photos', 'specifications','specifications.label', 'category'] ),
@@ -55,6 +62,7 @@ class ProductController extends Controller
         $specifications = $request->input('specifications') ?? "";
         $specGroups = $request->input('specGroups') ?? 1;
         $type = $request->input('type') ?? 1;
+        $layout = $request->input('layout') ?? "grid";
 
         if ($specGroups < 1 || $specGroups > 1000) {
             $specGroups = 1;
@@ -68,6 +76,11 @@ class ProductController extends Controller
         if (!in_array($sort, ['alpha-asc', 'alpha-dsc', 'date', 'price-low', 'price-high'])) {
             $sort = 'alpha-asc';
         }
+        // Check if layout matches on of the available values else set to grid
+        if (!in_array($layout, ['grid', 'list'])) {
+            $layout = 'grid';
+        }
+
 
         // Get paginated products with filters applied
         $products = Product::with('photos', 'specifications', 'category',  'discount')
@@ -107,6 +120,7 @@ class ProductController extends Controller
             'categories' => $filterCategories,
             'itemsPerPage' => $itemsPerPage,
             'sort' => $sort,
+            'layout' => $layout,
             'attributes' => new ComponentAttributeBag([]),
         ])->render();
 

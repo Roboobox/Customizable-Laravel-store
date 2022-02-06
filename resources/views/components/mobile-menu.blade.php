@@ -29,6 +29,12 @@
             <div class="tab-pane active" id="main-menu">
                 <ul class="mobile-menu">
                     <x-header.header-pages></x-header.header-pages>
+                    <li class="{{ Route::is('about') ? 'active' : '' }}">
+                        <a href="{{ route('about') }}">About us</a>
+                    </li>
+                    <li class="{{ Route::is('contact') ? 'active' : '' }}">
+                        <a href="{{ route('contact') }}">Contact us</a>
+                    </li>
                 </ul>
             </div>
             <div class="tab-pane" id="categories">
@@ -36,7 +42,10 @@
                     @foreach($productCategories as $productCategory)
                     <li>
                         <a href="{{ route('products-category', ['category' => $productCategory->slug]) }}">
-                            <i class="w-icon-heartbeat"></i>{{ $productCategory->name }}
+                            @if($productCategory->icon)
+                            <i class="{{ $productCategory->icon }}"></i>
+                            @endif
+                            {{ $productCategory->name }}
                         </a>
                     </li>
                     @endforeach

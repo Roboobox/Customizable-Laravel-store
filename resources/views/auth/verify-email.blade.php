@@ -8,11 +8,11 @@
         <x-page-header>My Account</x-page-header>
         <div class="page-content">
             <div class="container">
-                <div class="verify-popup">
-                    <figure class="verify-icon text-center text-primary">
+                <div class="popup-window">
+                    <figure class="popup-window-icon text-center text-primary">
                         <i class="w-icon-envelop"></i>
                     </figure>
-                    <div class="verify-content">
+                    <div class="popup-window-content">
                         <h3 class="font-weight-bolder text-center">Verify your email</h3>
                         <p>{{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</p>
                         <form class="text-center" method="POST" action="{{ route('verification.send') }}">

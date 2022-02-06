@@ -13,7 +13,6 @@
                 <div class="shop-content-container mt-lg-10 mt-5 p-relative">
                     <div class="loading-overlay"><div class="spinner loading"></div> </div>
                     <div class="shop-content row gutter-lg mb-10" {{ request()->route('category') ? 'data-category=' . request()->route('category')->slug : '' }} data-url="{{ route('ajax-products') }}">
-    {{--                    <x-products.shop-content :products="$products"></x-products.shop-content>--}}
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ class CreateProductCategoriesTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('name', 100);
-            $table->string('icon_class')->nullable();
+            $table->string('icon', 25)->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
         });

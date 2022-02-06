@@ -1,4 +1,4 @@
-@props(['products', 'itemsPerPage', 'sort', 'specifications', 'categories'])
+@props(['products', 'itemsPerPage', 'sort', 'specifications', 'categories', 'layout'])
     <aside class="sidebar shop-sidebar sticky-sidebar-wrapper sidebar-fixed">
         <div class="sidebar-overlay"></div>
         <a class="sidebar-close" href="#"><i class="close-icon"></i></a>
@@ -44,17 +44,21 @@
                     </select>
                 </div>
                 <div class="toolbox-item toolbox-layout">
-                    <a href="shop-banner-sidebar.html" class="icon-mode-grid btn-layout active">
+                    <a href="#" class="icon-mode-grid btn-layout{{ $layout == 'grid' ? ' active' : '' }}" data-layout="grid">
                         <i class="w-icon-grid"></i>
                     </a>
-                    <a href="shop-list.html" class="icon-mode-list btn-layout">
+                    <a href="#" class="icon-mode-list btn-layout{{ $layout == 'list' ? ' active' : '' }}" data-layout="list">
                         <i class="w-icon-list"></i>
                     </a>
                 </div>
             </div>
         </nav>
         @if(count($products))
+            @if($layout == 'list')
             <x-products.products-list :products="$products"></x-products.products-list>
+            @else
+            <x-products.products-grid :products="$products"></x-products.products-grid>
+            @endif
         @else
             <div class="product-wrapper row">
                 <div class="alert alert-simple alert-inline text-center mt-3">

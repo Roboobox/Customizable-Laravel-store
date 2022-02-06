@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         StoreSettingTypes::create(['type' => 'phone']);
         StoreSettingTypes::create(['type' => 'email']);
         StoreSettingTypes::create(['type' => 'address']);
-        StoreSettingTypes::create(['type' => 'logo_path']);
+        StoreSettingTypes::create(['type' => 'logo_file']);
         StoreSettingTypes::create(['type' => 'main_banner_image']);
         StoreSettingTypes::create(['type' => 'main_banner_html']);
         StoreSettingTypes::create(['type' => 'soc_facebook']);

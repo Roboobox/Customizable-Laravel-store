@@ -114,6 +114,9 @@ header {
                 object-fit: cover !important;
             }
         }
+        .product-category {
+            color: #bfbfbf;
+        }
     }
 
     .intro-section {
@@ -142,16 +145,26 @@ header {
     }
 }
 
-.verify-email {
-    .verify-popup {
+.verify-email, .forgot-password {
+    .popup-window {
         margin: 4.2rem auto 5rem;
         -webkit-box-shadow: 0 0 10px rgb(0 0 0 / 10%);
         box-shadow: 0 0 10px rgb(0 0 0 / 10%);
         max-width: 50rem;
         padding: 3.3rem 5rem 2.6rem;
 
-        .verify-icon {
+        .popup-window-icon {
             font-size: 6rem;
+        }
+    }
+    .alert {
+        text-align: left;
+        ul {
+            padding-left: 1rem;
+            li:before {
+                content: none;
+                left: 0;
+            }
         }
     }
 }

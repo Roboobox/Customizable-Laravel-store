@@ -29,6 +29,16 @@ function initEvents() {
             fetchProducts(true);
         }
     });
+    // Layout selection
+    shopContentElem.on('click', '.toolbox .btn-layout', function (e)
+    {
+        e.preventDefault();
+        let layout = $(this).data('layout');
+        if (layout) {
+            addParamToUrl('layout', layout);
+            fetchProducts();
+        }
+    });
     // Filter selection
     shopContentElem.on('click', '.product-specification li a', function ()
     {
@@ -149,7 +159,6 @@ function setFiltersSelected(urlFilters) {
     }
 }
 
-
 function fetchProducts(scrollToTop = false) {
     const urlQuery = window.location.search;
     const urlParams = new URLSearchParams(urlQuery);
@@ -175,6 +184,11 @@ function fetchProducts(scrollToTop = false) {
     if (shopContent.data('category')) {
         type = 2;
     }
+
+    // Get opened filters
+    let openFilters = $('.product-specification .widget-title:not(.collapsed)').map(function(){
+        return $(this).data('label');
+    }).get();
 
     showProductsLoading();
 
@@ -209,6 +223,10 @@ function fetchProducts(scrollToTop = false) {
                 if (scrollToTop)
                 {
                     scrollToShopTop();
+                }
+                // Open previously opened filters
+                for (let filterLabel of openFilters) {
+                    $('.product-specification .widget-title[data-label="'+filterLabel+'"]').removeClass('collapsed');
                 }
             }
             hideProductsLoading();

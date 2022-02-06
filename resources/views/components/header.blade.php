@@ -7,6 +7,7 @@
             </div>
             <div class="header-right">
                 <!-- End of Dropdown Menu -->
+                <a href="{{ route('about') }}" class="d-lg-show header-contact-us">About Us</a>
                 <a href="{{ route('contact') }}" class="d-lg-show header-contact-us">Contact Us</a>
                 <span class="divider d-lg-show"></span>
                 @auth
@@ -28,7 +29,7 @@
                 <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                 </a>
                 <a href="{{ route('home') }}" class="logo ml-lg-0">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="logo" width="144" height="45" />
+                    <img src="{{ asset('assets/images/store/logos/' . $storeSettings->get('logo_file')->value) }}" alt="logo" width="144" height="45" />
                 </a>
                 <form method="get" action="{{ route('products') }}"
                       class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
@@ -104,7 +105,10 @@
                                 @foreach($productCategories as $productCategory)
                                     <li>
                                         <a href="{{ route('products-category', ['category' => $productCategory->slug])}}">
-                                            <i class="w-icon-heartbeat"></i>{{ $productCategory->name }}
+                                            @if($productCategory->icon)
+                                                <i class="{{ $productCategory->icon }}"></i>
+                                            @endif
+                                            {{ $productCategory->name }}
                                         </a>
                                     </li>
                                 @endforeach
