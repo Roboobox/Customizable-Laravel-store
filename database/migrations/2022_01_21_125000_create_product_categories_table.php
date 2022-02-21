@@ -20,6 +20,8 @@ class CreateProductCategoriesTable extends Migration
             $table->string('icon', 25)->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
+
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

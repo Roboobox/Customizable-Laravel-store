@@ -16,7 +16,7 @@
         <x-top-categories-banner></x-top-categories-banner>
 
         <div class="container">
-            @if(!empty($recentlyViewed))
+            @if(count($recentlyViewed))
                 <x-recent-views-banner :recently-viewed="$recentlyViewed"></x-recent-views-banner>
             @endif
         </div>

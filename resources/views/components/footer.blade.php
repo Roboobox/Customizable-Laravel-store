@@ -1,4 +1,4 @@
-@props(['storeSettings'])
+@props(['storeSettings', 'company'])
 <!-- Start of Footer -->
 <footer class="footer appear-animate" data-animation-options="{
             'name': 'fadeIn'
@@ -34,8 +34,7 @@
     <div class="container">
         <div class="footer-bottom">
             <div class="footer-left">
-{{--                TODO : Add company name var--}}
-                <p class="copyright">Company name</p>
+                <p class="copyright">{{ $company->name ?? '' }}</p>
             </div>
             <div class="footer-right">
                 <div class="social-icons social-icons-colored">

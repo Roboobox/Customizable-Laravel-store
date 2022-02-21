@@ -29,7 +29,7 @@
                 <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                 </a>
                 <a href="{{ route('home') }}" class="logo ml-lg-0">
-                    <img src="{{ asset('assets/images/store/logos/' . $storeSettings->get('logo_file')->value) }}" alt="logo" width="144" height="45" />
+                    <img src="{{ asset('assets/images/store/logos/' . ($storeSettings->get('logo_file')->value ?? '')) }}" alt="logo" width="144" height="45" />
                 </a>
                 <form method="get" action="{{ route('products') }}"
                       class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">

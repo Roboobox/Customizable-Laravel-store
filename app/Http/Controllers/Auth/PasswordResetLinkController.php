@@ -36,7 +36,7 @@ class PasswordResetLinkController extends Controller
         // to send the link, we will examine the response then see the message we
         // need to show to the user. Finally, we'll send out a proper response.
         $status = Password::sendResetLink(
-            array_merge($request->only('email'), ['account_type_id' => 1])
+            array_merge($request->only('email'), ['account_type_id' => 1, 'company_id' => config('company.id')])
         );
 
         return $status == Password::RESET_LINK_SENT

@@ -28,7 +28,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
 
             $table->foreignId('account_type_id')->default(1)->constrained('account_types');
-            $table->unique(['email', 'account_type_id']);
+            $table->foreignId('company_id')->constrained('companies');
+            $table->unique(['email', 'account_type_id', 'company_id']);
         });
     }
 

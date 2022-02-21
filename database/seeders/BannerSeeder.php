@@ -23,6 +23,7 @@ class BannerSeeder extends Seeder
                     <h5 class="underline">1000 EUR</h5>
                     <p>and recieve <b>20% discount</b></p>
                 </div>',
+            'company_id' => 1,
         ]);
     }
 }

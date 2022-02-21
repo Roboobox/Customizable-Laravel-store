@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            // TODO : Make slugs unique for every company (slug+company_id?)
             $table->string('slug')->unique();
             $table->string('name', 100);
             $table->text('description')->nullable();
@@ -25,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
 
             $table->foreignId('category_id')->constrained('product_categories');
+            $table->foreignId('company_id')->constrained('companies');
 
             $table->index('name');
         });

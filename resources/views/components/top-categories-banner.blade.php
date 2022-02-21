@@ -25,7 +25,7 @@
                                  width="130" height="130">
                         </a>
                         <div class="category-content">
-                            <h4 class="category-name">Placeholder category</h4>
+                            <h4 class="category-name">Placeholder</h4>
                             <a href="{{ route('products') }}"
                                class="btn btn-primary btn-link btn-underline">Shop
                                 Now</a>
@@ -38,7 +38,7 @@
                                  width="130" height="130">
                         </a>
                         <div class="category-content">
-                            <h4 class="category-name">Placeholder category</h4>
+                            <h4 class="category-name">Placeholder</h4>
                             <a href="{{ route('products') }}"
                                class="btn btn-primary btn-link btn-underline">Shop
                                 Now</a>
@@ -51,7 +51,7 @@
                                  width="130" height="130">
                         </a>
                         <div class="category-content">
-                            <h4 class="category-name">Placeholder category</h4>
+                            <h4 class="category-name">Placeholder</h4>
                             <a href="{{ route('products') }}"
                                class="btn btn-primary btn-link btn-underline">Shop
                                 Now</a>

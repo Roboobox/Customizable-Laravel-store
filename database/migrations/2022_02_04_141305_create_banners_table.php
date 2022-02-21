@@ -19,6 +19,8 @@ class CreateBannersTable extends Migration
             $table->string('photo_file');
             $table->string('background_file');
             $table->timestamps();
+
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

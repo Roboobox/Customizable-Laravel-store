@@ -45,7 +45,7 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
         // Account type id 0 for default login account
-        if (! Auth::attempt(array_merge($this->only('email', 'password'), ['account_type_id' => 1]), $this->boolean('remember'))) {
+        if (! Auth::attempt(array_merge($this->only('email', 'password'), ['account_type_id' => 1, 'company_id' => config('company.id')]), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

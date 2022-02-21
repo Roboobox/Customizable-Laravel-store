@@ -17,25 +17,29 @@ class BenefitBannerSeeder extends Seeder
         BenefitBanner::create([
             'title' => 'Free Shipping & Returns',
             'subtitle' => 'For all orders over $99',
-            'icon' => 'w-icon-truck'
+            'icon' => 'w-icon-truck',
+            'company_id' => 1
         ]);
 
         BenefitBanner::create([
             'title' => 'Secure Payment',
             'subtitle' => 'We ensure secure payment',
-            'icon' => 'w-icon-bag'
+            'icon' => 'w-icon-bag',
+            'company_id' => 1
         ]);
 
         BenefitBanner::create([
             'title' => 'Money Back Guarantee',
             'subtitle' => 'Any back within 30 days',
-            'icon' => 'w-icon-money'
+            'icon' => 'w-icon-money',
+            'company_id' => 1
         ]);
 
         BenefitBanner::create([
             'title' => 'Customer Support',
             'subtitle' => 'Call or email us 24/7',
-            'icon' => 'w-icon-chat'
+            'icon' => 'w-icon-chat',
+            'company_id' => 1
         ]);
     }
 }

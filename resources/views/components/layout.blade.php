@@ -8,14 +8,14 @@
 </x-head>
 
 <body class="{{ $bodyClass }}">
-    <h1 class="d-none">Wolmart - Responsive Marketplace HTML Template</h1>
+    <h1 class="d-none">Shop ABCD</h1>
     <div class="page-wrapper">
         <x-header :storeSettings="$storeSettings" :product-categories="$productCategories" :cart-item-count="$cartItemCount"></x-header>
         <main class="main">
             {{ $main }}
         </main>
 
-        <x-footer :storeSettings="$storeSettings"></x-footer>
+        <x-footer :storeSettings="$storeSettings" :company="$company"></x-footer>
     </div>
 
     <x-sticky-footer></x-sticky-footer>

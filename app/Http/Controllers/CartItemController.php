@@ -31,7 +31,7 @@ class CartItemController extends Controller
 
         if (Auth::check()) {
             $cart = Cart::firstOrCreate(
-                ['user_id' => Auth::user()->id]
+                ['user_id' => Auth::user()->id, 'company_id' => config('company.id')]
             );
 
             $cartItem = CartItem::firstOrNew([
@@ -79,7 +79,7 @@ class CartItemController extends Controller
 
         if (Auth::check()) {
             $deleteStmt = CartItem::where('cart_id', function ($query) {
-                $query->select('id')->from('carts')->where('user_id', Auth::user()->id);
+                $query->select('id')->from('carts')->where('user_id', Auth::user()->id)->where('company_id', config('company.id'));
             })->where('product_id', $productId)->first()->delete();
 
             if ($deleteStmt)
@@ -118,7 +118,7 @@ class CartItemController extends Controller
 
         if (Auth::check()) {
             $updateStmt = CartItem::where('cart_id', function ($query) {
-                $query->select('id')->from('carts')->where('user_id', Auth::user()->id);
+                $query->select('id')->from('carts')->where('user_id', Auth::user()->id)->where('company_id', config('company.id'));
             })->where('product_id', $productId)->first()->update(['quantity' => $quantity]);
             if ($updateStmt)
             {

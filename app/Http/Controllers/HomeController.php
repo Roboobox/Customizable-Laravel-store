@@ -13,8 +13,8 @@ class HomeController extends Controller
 {
     public function create()
     {
-        $banner = Banner::latest()->take(1)->first();
-        $benefitBanners = BenefitBanner::all();
+        $banner = Banner::latest()->where('company_id', config('company.id'))->first();
+        $benefitBanners = BenefitBanner::where('company_id', config('company.id'))->get();
 
         $recentlyViewed = [];
         if (Auth::check()) {
@@ -23,6 +23,7 @@ class HomeController extends Controller
                     $subQuery->select('product_id')->distinct()
                         ->from('view_histories')
                         ->where('user_id', Auth::user()->id)
+                        ->where('company_id', config('company.id'))
                         ->limit(10);
                 }, 'sq');
             })->with('thumbnail', 'category')->get();

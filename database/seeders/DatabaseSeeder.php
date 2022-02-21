@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AccountType;
+use App\Models\Company;
 use App\Models\StoreSettingTypes;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -34,7 +35,10 @@ class DatabaseSeeder extends Seeder
         AccountType::create(['id' => 2, 'type' => 'google']);
         AccountType::create(['id' => 3, 'type' => 'facebook']);
 
-        $user = User::factory()->create(['email' => 'test@email.com']);
+        Company::create(['name' => 'Hilma Biocare']);
+        Company::create(['name' => 'Test Company']);
+
+        $user = User::factory()->create(['email' => 'test@email.com', 'company_id' => 1]);
 
         $this->call([
             ProductSeeder::class,

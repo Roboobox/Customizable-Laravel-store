@@ -19,6 +19,7 @@ class CreateViewHistoriesTable extends Migration
 
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

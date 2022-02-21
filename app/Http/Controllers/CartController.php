@@ -57,7 +57,7 @@ class CartController extends Controller
 
     protected function getCart() {
         if (Auth::check()) {
-            $cart = Cart::where('user_id', Auth::user()->id)->with(['cartItems', 'cartItems.product', 'cartItems.product.thumbnail'])->first();
+            $cart = Cart::where('user_id', Auth::user()->id)->where('company_id', config('company.id'))->with(['cartItems', 'cartItems.product', 'cartItems.product.thumbnail'])->first();
             if (!$cart) {
                 return new SessionCart();
             }

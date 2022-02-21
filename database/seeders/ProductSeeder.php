@@ -20,24 +20,27 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        SpecificationLabel::create(['label' => 'Form']);
-        SpecificationLabel::create(['label' => 'Capacity']);
-        SpecificationLabel::create(['label' => 'Dosage']);
+        SpecificationLabel::create(['label' => 'Form', 'company_id' => 1]);
+        SpecificationLabel::create(['label' => 'Capacity', 'company_id' => 1]);
+        SpecificationLabel::create(['label' => 'Dosage', 'company_id' => 1]);
 
         $csvFile = fopen("C:/wamp64/csv/product_list.csv", "rb");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
-                $category = ProductCategory::where('name', $data[0])->first();
+                $category = ProductCategory::where('name', $data[0])
+                    ->where('company_id', config('company.id'))
+                    ->first();
                 if (!$category) {
-                    $category = ProductCategory::create(['name' => $data[0], 'icon' => 'w-icon-heartbeat']);
+                    $category = ProductCategory::create(['name' => $data[0], 'icon' => 'w-icon-heartbeat', 'company_id' => config('company.id')]);
                 }
                 $product = Product::factory([
                     "name" => $data['4'],
                     "description" => null,
-                    'category_id' => $category->id,
-                    "discount_percent" => 0
+                    "category_id" => $category->id,
+                    "discount_percent" => 0,
+                    "company_id" => 1,
                 ])->create();
                 $image = ProductPhoto::factory([
                     "product_id" => $product->id,
@@ -58,9 +61,12 @@ class ProductSeeder extends Seeder
     }
 
     public function insertSpec(int $labelId, $data, $product) {
-        $spec = Specification::where('specification_label_id', $labelId)->where('value', $data[ (string)$labelId ])->first();
+        $spec = Specification::where('specification_label_id', $labelId)
+            ->where('value', $data[ (string)$labelId ])
+            ->where('company_id', config('company.id'))
+            ->first();
         if (!$spec) {
-            $spec = Specification::create(['specification_label_id' => $labelId, 'value'=>$data[(string)$labelId]]);
+            $spec = Specification::create(['specification_label_id' => $labelId, 'value' => $data[(string)$labelId], 'company_id' => 1]);
         }
         ProductSpecification::create(['product_id' => $product->id, 'specification_id' => $spec->id]);
     }

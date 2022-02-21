@@ -17,22 +17,26 @@ class StoreSettingSeeder extends Seeder
     {
         StoreSettings::create([
             'setting_type_id' => StoreSettingTypes::where('type', 'phone')->first()->id,
-            'value' => '+371 47270202'
+            'value' => '+371 47270202',
+            'company_id' => 1
         ]);
 
         StoreSettings::create([
             'setting_type_id' => StoreSettingTypes::where('type', 'email')->first()->id,
-            'value' => 'test@example.com'
+            'value' => 'test@example.com',
+            'company_id' => 1
         ]);
 
         StoreSettings::create([
             'setting_type_id' => StoreSettingTypes::where('type', 'soc_twitter')->first()->id,
-            'value' => 'https://twitter.com/'
+            'value' => 'https://twitter.com/',
+            'company_id' => 1
         ]);
 
         StoreSettings::create([
             'setting_type_id' => StoreSettingTypes::where('type', 'logo_file')->first()->id,
-            'value' => 'logo.png'
+            'value' => 'logo.png',
+            'company_id' => 1
         ]);
     }
 }

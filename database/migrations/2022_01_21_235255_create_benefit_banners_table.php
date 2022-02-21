@@ -19,6 +19,8 @@ class CreateBenefitBannersTable extends Migration
             $table->string('subtitle', 50);
             $table->string('icon', 25);
             $table->timestamps();
+
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

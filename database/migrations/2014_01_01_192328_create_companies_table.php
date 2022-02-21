@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStoreSettingsTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateStoreSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('store_settings', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('value');
-
-            $table->foreignId('setting_type_id')->constrained('store_setting_types');
-            $table->foreignId('company_id')->constrained('companies');
+            $table->string('name', 60)->unique();
         });
     }
 
@@ -29,6 +26,6 @@ class CreateStoreSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('store_settings');
+        Schema::dropIfExists('companies');
     }
 }

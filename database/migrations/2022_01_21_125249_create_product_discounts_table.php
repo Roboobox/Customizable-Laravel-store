@@ -22,6 +22,7 @@ class CreateProductDiscountsTable extends Migration
             $table->timestamps();
 
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

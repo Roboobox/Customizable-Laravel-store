@@ -19,6 +19,7 @@ class CreateSpecificationsTable extends Migration
             $table->timestamps();
 
             $table->foreignId('specification_label_id')->constrained();
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

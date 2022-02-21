@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
 
             $table->foreignId('user_id')->constrained();
             $table->foreignId('shipping_id')->constrained('order_shippings');
+            $table->foreignId('company_id')->constrained('companies');
         });
     }
 

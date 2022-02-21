@@ -32,7 +32,8 @@ class SocialController extends Controller
 
         $user = User::firstOrCreate([
             'email' => $googleUser->getEmail(),
-            'account_type_id' => 2
+            'company_id' => config('company.id'),
+            'account_type_id' => 2,
         ], [
             'name' => ($googleUser->user['given_name'] ?? NULL),
             'surname' => ($googleUser->user['family_name'] ?? NULL),
@@ -54,6 +55,7 @@ class SocialController extends Controller
 
         $user = User::firstOrCreate([
             'email' => $facebookUser->getEmail(),
+            'company_id' => config('company.id'),
             'account_type_id' => 3
         ], [
             'name' => ($facebookUser->user['first_name'] ?? NULL),

@@ -29,7 +29,8 @@ class ProductController extends Controller
         {
             ViewHistory::create( [
                 'product_id' => $product->id,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user()->id,
+                'company_id' => config('company.id'),
             ] );
         } else {
             if (!session()->has('viewHistory')) {
@@ -46,7 +47,7 @@ class ProductController extends Controller
         }
         return view('product', [
             'product' => $product->load(['photos', 'specifications','specifications.label', 'category'] ),
-            'moreProducts' => Product::whereNotIn('id', [$product->id])->inRandomOrder()->limit(6)
+            'moreProducts' => Product::whereNotIn('id', [$product->id])->where('company_id', config('company.id'))->inRandomOrder()->limit(6)
                 ->with(['photos:product_id,photo_path'])->get(),
         ]);
     }
@@ -84,6 +85,7 @@ class ProductController extends Controller
 
         // Get paginated products with filters applied
         $products = Product::with('photos', 'specifications', 'category',  'discount')
+            ->where('company_id', config('company.id'))
             ->filter([
                 'search' => $search,
                 'category' => $category,
@@ -94,12 +96,16 @@ class ProductController extends Controller
             ->paginate($itemsPerPage, ['*'], 'page', $request->input('page'))
             ->withPath('products');
 
-        $searchedProducts = Product::filter(['search' => $search, 'category' => $category])->select(['id']);
+        $searchedProducts = Product::where('company_id', config('company.id'))
+            ->filter(['search' => $search, 'category' => $category])->select(['id']);
+
         if ($type == 2)
         {
-            $searchedProductCategories = Product::filter(['search' => $search, 'category' => $category])->select('category_id')->distinct();
+            $searchedProductCategories = Product::where('company_id', config('company.id'))
+                ->filter(['search' => $search, 'category' => $category])->select('category_id')->distinct();
         } else {
-            $searchedProductCategories = Product::filter(['search' => $search])->select('category_id')->distinct();
+            $searchedProductCategories = Product::where('company_id', config('company.id'))
+                ->filter(['search' => $search])->select('category_id')->distinct();
         }
 
         // Get specifications of all products that match search and category
