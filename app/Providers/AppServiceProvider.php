@@ -33,47 +33,47 @@ class AppServiceProvider extends ServiceProvider
 //            return ProductCategory::where('company_id', config('company.id'))->get();
 //        });
 
-        $categories = ProductCategory::where('company_id', config('company.id'))->get();
-
-        view()->composer('components.layout', function ($view) use ($categories) {
-            if (Auth::check()) {
-                $cartItemCount = CartItem::where('cart_id', function ($query) {
-                    $query->select('id')->from('carts')->where('user_id', Auth::user()->id)->where('company_id', config('company.id'))->first();
-                })->count();
-            } else if (session()->has('cart')) {
-                $cart = session('cart');
-                $cartItemCount = count($cart->cartItems);
-            } else {
-                $cartItemCount = 0;
-            }
-
-
-            $storeSettings = StoreSettings::where('company_id', config('company.id'))
-                ->whereIn('setting_type_id', function ($query) {
-                    $query->select('id')->from('store_setting_types')->whereIn('type', [
-                        'phone',
-                        'email',
-                        'soc_facebook',
-                        'soc_instagram',
-                        'soc_pinterest',
-                        'soc_twitter',
-                        'soc_youtube',
-                        'logo_file',
-                    ]);
-                })
-                ->select(['type','value'])
-                ->leftJoin('store_setting_types', 'store_setting_types.id', '=', 'setting_type_id')
-                ->get()
-                ->keyBy('type');
-
-            $company = Company::find(config('company.id'));
-
-            $view->with([
-                'productCategories' => $categories,
-                'cartItemCount' => $cartItemCount,
-                'storeSettings' => $storeSettings,
-                'company' => $company,
-            ]);
-        });
+//        $categories = ProductCategory::where('company_id', config('company.id'))->get();
+//
+//        view()->composer('components.layout', function ($view) use ($categories) {
+//            if (Auth::check()) {
+//                $cartItemCount = CartItem::where('cart_id', function ($query) {
+//                    $query->select('id')->from('carts')->where('user_id', Auth::user()->id)->where('company_id', config('company.id'))->first();
+//                })->count();
+//            } else if (session()->has('cart')) {
+//                $cart = session('cart');
+//                $cartItemCount = count($cart->cartItems);
+//            } else {
+//                $cartItemCount = 0;
+//            }
+//
+//
+//            $storeSettings = StoreSettings::where('company_id', config('company.id'))
+//                ->whereIn('setting_type_id', function ($query) {
+//                    $query->select('id')->from('store_setting_types')->whereIn('type', [
+//                        'phone',
+//                        'email',
+//                        'soc_facebook',
+//                        'soc_instagram',
+//                        'soc_pinterest',
+//                        'soc_twitter',
+//                        'soc_youtube',
+//                        'logo_file',
+//                    ]);
+//                })
+//                ->select(['type','value'])
+//                ->leftJoin('store_setting_types', 'store_setting_types.id', '=', 'setting_type_id')
+//                ->get()
+//                ->keyBy('type');
+//
+//            $company = Company::find(config('company.id'));
+//
+//            $view->with([
+//                'productCategories' => $categories,
+//                'cartItemCount' => $cartItemCount,
+//                'storeSettings' => $storeSettings,
+//                'company' => $company,
+//            ]);
+//        });
     }
 }

@@ -55,14 +55,14 @@ function initEvents() {
     });
 
     // Category selection
-    // shopContentElem.on('click', '.product-category li a', function (event)
-    // {
-    //     event.preventDefault();
-    //     let element =  $(this);
-    //     let category = element.data('category');
-    //     addParamToUrl('c', category);
-    //     fetchProducts();
-    // });
+    shopContentElem.on('click', '.product-category li a', function (event)
+    {
+        event.preventDefault();
+        let element =  $(this);
+        let category = element.data('category');
+        addParamToUrl('c', category);
+        fetchProducts();
+    });
 
     // Clear filters selection
     shopContentElem.on('click', '.filter-clean', function (event)
@@ -95,7 +95,7 @@ function addParamToUrl(name, value) {
 
 function scrollToShopTop() {
     $([document.documentElement, document.body]).animate({
-        scrollTop: $("#shop_content_top").offset().top
+        scrollTop: $("header.header").offset().top
     }, 400);
 }
 
@@ -172,7 +172,7 @@ function fetchProducts(scrollToTop = false) {
     }
 
     let shopContent = $('.products .shop-content');
-    let category = shopContent.data('category') ?? '';
+    let category = shopContent.data('category') ?? urlParams.get('c') ?? '';
     let itemsPerPage = urlParams.get('i') ?? 12;
     let page = urlParams.get('page') ?? 1;
     let sort = urlParams.get('sort') ?? "alpha-asc"
@@ -189,6 +189,9 @@ function fetchProducts(scrollToTop = false) {
     let openFilters = $('.product-specification .widget-title:not(.collapsed)').map(function(){
         return $(this).data('label');
     }).get();
+
+    // Check if category widget was open
+    let isCtgOpen = $('.product-category .widget-title:not(.collapsed)').length;
 
     showProductsLoading();
 
@@ -228,6 +231,7 @@ function fetchProducts(scrollToTop = false) {
                 for (let filterLabel of openFilters) {
                     $('.product-specification .widget-title[data-label="'+filterLabel+'"]').removeClass('collapsed');
                 }
+                if (isCtgOpen) $('.product-category .widget-title.collapsed').removeClass('collapsed');
             }
             hideProductsLoading();
         },

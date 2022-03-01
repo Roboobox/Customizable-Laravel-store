@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountDetailController;
@@ -63,13 +66,14 @@ Route::middleware(['guestOrVerified'])->group(function () {
         return view('order-complete');
     })->name("order-complete");
 
-    Route::get('/about', function () {
-        return view('about-us');
-    })->name("about");
+    Route::get('/about', [AboutUsController::class, 'index'])
+        ->name("about");
 
-    Route::get('/contact', function () {
-        return view('contact-us');
-    })->name("contact");
+    Route::get('/contact', [ContactUsController::class, 'index'])
+        ->name("contact");
+
+    Route::post('/contact/message', [ContactUsController::class, 'store'])
+        ->name("contact-message");
 
     Route::get('/coming-soon', function () {
         return view('welcome');
@@ -82,6 +86,9 @@ Route::get('/login-popup', function () {
 
 Route::get('/auth', [AuthenticatedSessionController::class, 'create'])
     ->name("auth")->middleware('guest');
+
+Route::post('/newsletter-subscribe', [NewsletterController::class, 'store'])
+    ->name('newsletter-subscribe');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 

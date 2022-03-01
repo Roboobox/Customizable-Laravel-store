@@ -28,6 +28,12 @@ class StoreSettingSeeder extends Seeder
         ]);
 
         StoreSettings::create([
+            'setting_type_id' => StoreSettingTypes::where('type', 'address')->first()->id,
+            'value' => 'Example street 9, Country',
+            'company_id' => 1
+        ]);
+
+        StoreSettings::create([
             'setting_type_id' => StoreSettingTypes::where('type', 'soc_twitter')->first()->id,
             'value' => 'https://twitter.com/',
             'company_id' => 1

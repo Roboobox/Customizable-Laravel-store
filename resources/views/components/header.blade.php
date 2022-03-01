@@ -104,7 +104,7 @@
                             <ul class="menu vertical-menu category-menu">
                                 @foreach($productCategories as $productCategory)
                                     <li>
-                                        <a href="{{ route('products-category', ['category' => $productCategory->slug])}}">
+                                        <a {{ (Route::is('products-category') && (request()->route()->parameter('category')->slug ?? '') == $productCategory->slug) ? 'class=active' : '' }} href="{{ route('products-category', ['category' => $productCategory->slug])}}">
                                             @if($productCategory->icon)
                                                 <i class="{{ $productCategory->icon }}"></i>
                                             @endif
@@ -128,7 +128,7 @@
                     </nav>
                 </div>
                 <div class="header-right">
-                    <a href="{{ route('orders') }}" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
+
                 </div>
             </div>
         </div>

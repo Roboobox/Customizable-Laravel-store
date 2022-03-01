@@ -5,7 +5,6 @@
     </x-slot>
 
     <x-slot name="main">
-        <x-checkout-breadcrumbs></x-checkout-breadcrumbs>
 
         <div class="page-content mb-10 pb-2">
             <div class="container">

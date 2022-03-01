@@ -45,6 +45,8 @@ class DatabaseSeeder extends Seeder
             StoreSettingSeeder::class,
             BannerSeeder::class,
             BenefitBannerSeeder::class,
+            AboutUsSeeder::class,
+            FAQSeeder::class,
         ]);
     }
 }

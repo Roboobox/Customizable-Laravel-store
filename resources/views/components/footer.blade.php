@@ -16,16 +16,24 @@
                                 Our Newsletter</h4>
                             <p class="text-white">Get all the latest information on Events, Sales and Offers.
                             </p>
+                            <p class="subscribe-result font-weight-bold">
+                            </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-6 col-md-9 mt-4 mt-lg-0 ">
-                    <form action="#" method="get"
+                    <form id="newsletter_sub" method="POST" action="{{ route('newsletter-subscribe') }}"
                           class="input-wrapper input-wrapper-inline input-wrapper-rounded">
                         <input type="email" class="form-control mr-2 bg-white" name="email" id="email"
                                placeholder="Your E-mail Address" />
-                        <button class="btn btn-dark btn-rounded" type="submit">Subscribe<i
-                                class="w-icon-long-arrow-right"></i></button>
+
+                        <button class="btn btn-dark btn-rounded" type="submit">
+                            <div class="button-text">
+                                Subscribe
+                                <i class="w-icon-long-arrow-right"></i>
+                                <i class="w-icon-store-seo fa-spin"></i>
+                            </div>
+                        </button>
                     </form>
                 </div>
             </div>

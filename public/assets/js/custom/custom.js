@@ -31,6 +31,46 @@ $(function ( ) {
         });
     });
 
+    Wolmart.$body.on('submit', 'footer #newsletter_sub', function (e) {
+        e.preventDefault();
+        let form = $('footer #newsletter_sub');
+        let action = form.attr('action');
+        $('footer #newsletter_sub input').removeClass('invalid');
+        let resultField = $('footer .subscribe-result');
+        let inputField = $('footer #newsletter_sub input[type="email"]');
+        let submitButton = $('footer #newsletter_sub button[type="submit"]')
+
+        resultField.removeClass('sub-success').removeClass('sub-error').text();
+        inputField.removeClass('invalid');
+
+        submitButton.addClass('wait');
+        $.ajax({
+            url : action,
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            method: 'POST',
+            data: form.serialize(),
+            dataType: "json",
+            success : function (result){
+                if (result['status'] === 'success') {
+                    resultField.addClass('sub-success').text('Subscribed to newsletter!');
+                } else if (result['error']) {
+                    resultField.addClass('sub-error').text(result['error']);
+                    inputField.addClass('invalid');
+                } else {
+                    resultField.addClass('sub-error').text('Something went wrong, try again later!');
+                    inputField.addClass('invalid');
+                }
+                submitButton.removeClass('wait');
+            },
+            error: function()
+            {
+                resultField.addClass('sub-error').text('Something went wrong, try again later!');
+                inputField.addClass('invalid');
+                submitButton.removeClass('wait');
+            }
+        });
+    });
+
     // Wolmart.$body.on('click', '#sticky-footer-search', function (e) {
     //     console.log('test');
     // });

@@ -20,7 +20,7 @@ class ProductController extends Controller
 
     public function indexCategory(ProductCategory $category): View
     {
-        return view('products');
+        return view('products', ['category' => $category]);
     }
 
     public function show(Product $product): View
@@ -84,7 +84,7 @@ class ProductController extends Controller
 
 
         // Get paginated products with filters applied
-        $products = Product::with('photos', 'specifications', 'category',  'discount')
+        $products = Product::with('photos', 'specifications', 'category')
             ->where('company_id', config('company.id'))
             ->filter([
                 'search' => $search,

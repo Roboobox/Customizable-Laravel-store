@@ -1,5 +1,15 @@
 @props(['specifications', 'categories'])
 
+@if (count($categories) > 1)
+    <div class="widget widget-collapsible product-category">
+        <h3 class="widget-title collapsed"><span>Categories</span></h3>
+        <ul class="widget-body filter-items search-ul">
+            @foreach($categories as $category)
+                <li><a class="radio-custom" href="#" data-category="{{ $category->slug }}">{{ $category->name }}</a></li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @foreach($specifications->groupBy('label') as $groupLabel => $specData)
     <div class="product-specification widget widget-collapsible">

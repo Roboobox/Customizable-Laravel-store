@@ -4,7 +4,7 @@
     display: none;
 }
 
-input.invalid {
+input.invalid, textarea.invalid {
     border-color: #dc3545
 }
 
@@ -40,6 +40,55 @@ input.invalid {
 header {
     .header-contact-us {
         padding: 11px 0;
+    }
+    .category-dropdown {
+        .category-menu {
+            li a.active {
+                color: #336699;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+footer {
+    .footer-bottom {
+        padding: 1rem 0;
+    }
+    .footer-newsletter {
+        .sub-error {
+            color: #fa4141;
+        }
+        .sub-success {
+            color: #6ef056;
+        }
+        input[name='email'].invalid {
+            border: 2px solid #fa4141;
+        }
+        button {
+            .fa-spin {
+                display: none;
+            }
+        }
+        button.wait {
+            .fa-spin {
+                display: inline-block;
+            }
+            .w-icon-long-arrow-right {
+                display: none;
+            }
+        }
+    }
+}
+
+.contact-us {
+    .contact-us-form {
+        input, textarea {
+            margin-bottom: 0 !important;
+        }
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
     }
 }
 

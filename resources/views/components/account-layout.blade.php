@@ -6,7 +6,6 @@
 
     <x-slot name="main">
         <x-page-header>My account</x-page-header>
-        <x-breadcrumbs></x-breadcrumbs>
 
         <div class="page-content pt-2">
             <div class="container">

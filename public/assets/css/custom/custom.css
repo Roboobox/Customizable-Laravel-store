@@ -5,7 +5,7 @@
   display: none;
 }
 
-input.invalid {
+input.invalid, textarea.invalid {
   border-color: #dc3545;
 }
 
@@ -38,6 +38,39 @@ input.invalid {
 
 header .header-contact-us {
   padding: 11px 0;
+}
+header .category-dropdown .category-menu li a.active {
+  color: #336699;
+  font-weight: bold;
+}
+
+footer .footer-bottom {
+  padding: 1rem 0;
+}
+footer .footer-newsletter .sub-error {
+  color: #fa4141;
+}
+footer .footer-newsletter .sub-success {
+  color: #6ef056;
+}
+footer .footer-newsletter input[name=email].invalid {
+  border: 2px solid #fa4141;
+}
+footer .footer-newsletter button .fa-spin {
+  display: none;
+}
+footer .footer-newsletter button.wait .fa-spin {
+  display: inline-block;
+}
+footer .footer-newsletter button.wait .w-icon-long-arrow-right {
+  display: none;
+}
+
+.contact-us .contact-us-form input, .contact-us .contact-us-form textarea {
+  margin-bottom: 0 !important;
+}
+.contact-us .contact-us-form .form-group {
+  margin-bottom: 1.4rem;
 }
 
 .products .filter-items li a.active {
