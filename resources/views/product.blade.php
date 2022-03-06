@@ -59,19 +59,11 @@
                                 <div class="product-details" data-sticky-options="{'minWidth': 767}">
                                     <h1 class="product-title">{{ $product->name }}</h1>
                                     <div class="product-bm-wrapper">
-{{--                                        <figure class="brand">--}}
-{{--                                            <img src="assets/images/products/brand/brand-1.jpg" alt="Brand"--}}
-{{--                                                 width="102" height="48" />--}}
-{{--                                        </figure>--}}
                                         <div class="product-meta">
                                             <div class="product-categories">
                                                 Category:
-{{--                                                TODO : Add category route--}}
-                                                <span class="product-category"><a href="#">{{ $product->category->name }}</a></span>
+                                                <span class="product-category"><a href="{{ route('products-category', ['category' => $product->category]) }}">{{ $product->category->name }}</a></span>
                                             </div>
-{{--                                            <div class="product-sku">--}}
-{{--                                                SKU: <span>MS46891340</span>--}}
-{{--                                            </div>--}}
                                         </div>
                                     </div>
 

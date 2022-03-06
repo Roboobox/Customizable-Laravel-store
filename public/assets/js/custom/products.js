@@ -70,6 +70,16 @@ function initEvents() {
         clearUrlFilterParams();
         fetchProducts();
     });
+
+    shopContentElem.on('submit', '.cart_quick_add', function (event)
+    {
+        quickAddToCart($(this), event);
+    });
+
+    shopContentElem.on('change', '.cart_quick_add input.quantity', function (event)
+    {
+        validateProductQuantity('.cart_quick_add input.quantity');
+    });
 }
 
 function showProductsLoading() {
@@ -97,6 +107,29 @@ function scrollToShopTop() {
     $([document.documentElement, document.body]).animate({
         scrollTop: $("header.header").offset().top
     }, 400);
+}
+
+function quickAddToCart(form, event) {
+    event.preventDefault();
+    $.ajax({
+        url : form.attr('action'),
+        method: 'POST',
+        dataType: "json",
+        data: form.serialize(),
+        success : function (result){
+            if (result['status'] !== undefined && result['status'] === 'success') {
+                $('.cart-dropdown .cart-count').text(result['count']);
+                form.children('.cart-message').removeClass('error').text('Added to the cart!').stop(true, true).fadeTo(200, 1).delay(4000).fadeTo(200, 0);
+                form.find('input.quantity').val(1);
+            } else {
+                form.children('.cart-message').addClass('error').text('Something went wrong, try again later!').stop(true, true).fadeTo(200, 1).delay(4000).fadeTo(200, 0);
+            }
+        },
+        error: function()
+        {
+            form.children('.cart-message').addClass('error').text('Something went wrong, try again later!').stop(true, true).fadeTo(200, 1).delay(4000).fadeTo(200, 0);
+        }
+    });
 }
 
 function clearUrlFilterParams() {
@@ -221,6 +254,7 @@ function fetchProducts(scrollToTop = false) {
                 Wolmart.countDown('.product-countdown, .countdown');
                 Wolmart.sidebar('sidebar');                                         // Initialize Sidebar
                 Wolmart.sidebar('right-sidebar');
+                Wolmart.initQtyInput('.quantity');
                 Wolmart.menu.init();
                 setFiltersSelected(specifications);
                 if (scrollToTop)

@@ -13,7 +13,7 @@
         </div>
         @endif
 
-        <x-top-categories-banner></x-top-categories-banner>
+        <x-top-categories-banner :topSoldProducts="$topSoldProducts"></x-top-categories-banner>
 
         <div class="container">
             @if(count($recentlyViewed))

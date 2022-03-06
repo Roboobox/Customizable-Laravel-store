@@ -45,9 +45,21 @@
                 </li>
             @endforeach
         </ul>
-        <div class="product-action">
-            <a href="{{ route('product', ['product' => $product->slug]) }}" class="btn-product btn-cart"
-               title="Add to Cart"><i class="w-icon-cart"></i>View product</a>
-        </div>
+        <form class="cart_quick_add" action="{{ route('cart-add') }}" method="post">
+            <div class="product-action">
+                <div class="product-qty-form mr-3" data-price="{{ $product->price }}">
+                    <div class="input-group">
+                        <input value="1" class="quantity form-control" name="quantity" type="number" min="1" max="10000000">
+                        <button type="button" class="quantity-plus w-icon-plus"></button>
+                        <button type="button" class="quantity-minus w-icon-minus"></button>
+                    </div>
+                </div>
+                <input type="hidden" name="product" value="{{ $product->id }}">
+                @csrf
+                <button type="submit" class="btn-product btn-cart"
+                   title="Add to Cart"><i class="w-icon-cart"></i>Add to cart</button>
+            </div>
+            <div class="mt-1 cart-message">Message</div>
+        </form>
     </div>
 </div>

@@ -16,7 +16,7 @@
                                 Our Newsletter</h4>
                             <p class="text-white">Get all the latest information on Events, Sales and Offers.
                             </p>
-                            <p class="subscribe-result font-weight-bold">
+                            <p style="opacity: 0" class="subscribe-result font-weight-bold">
                             </p>
                         </div>
                     </div>

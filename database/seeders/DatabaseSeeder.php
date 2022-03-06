@@ -35,8 +35,8 @@ class DatabaseSeeder extends Seeder
         AccountType::create(['id' => 2, 'type' => 'google']);
         AccountType::create(['id' => 3, 'type' => 'facebook']);
 
-        Company::create(['name' => 'Hilma Biocare']);
-        Company::create(['name' => 'Test Company']);
+        Company::create(['name' => 'Hilma Biocare', 'url' => '']);
+        Company::create(['name' => 'Test Company', 'url' => '']);
 
         $user = User::factory()->create(['email' => 'test@email.com', 'company_id' => 1]);
 

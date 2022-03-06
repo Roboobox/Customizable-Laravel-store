@@ -135,6 +135,30 @@ footer {
         }
     }
 
+    .cart_quick_add {
+        .product-action {
+            z-index: 1;
+            .btn-cart {
+                border-width: 1px !important;
+                cursor: pointer;
+            }
+        }
+        .cart-message {
+            opacity: 0;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 3px;
+            background: #799b5a;
+            width: fit-content;
+            padding: 0 15px;
+        }
+
+        .cart-message.error {
+            background-color: #6d1a17;
+        }
+    }
+
 
 }
 

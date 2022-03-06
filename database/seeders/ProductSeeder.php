@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
         SpecificationLabel::create(['label' => 'Capacity', 'company_id' => 1]);
         SpecificationLabel::create(['label' => 'Dosage', 'company_id' => 1]);
 
-        $csvFile = fopen("C:/wamp64/csv/product_list.csv", "rb");
+        $csvFile = fopen(storage_path('app/products/product_list.csv'), "rb");
 
         $firstline = true;
         while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {

@@ -8,7 +8,7 @@
 </x-head>
 
 <body class="{{ $bodyClass }}">
-    <h1 class="d-none">Shop ABCD</h1>
+    <h1 class="d-none">Eshop</h1>
     <div class="page-wrapper">
         <x-header :storeSettings="$storeSettings" :product-categories="$productCategories" :cart-item-count="$cartItemCount"></x-header>
         <main class="main">

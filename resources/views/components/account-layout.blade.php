@@ -9,7 +9,7 @@
 
         <div class="page-content pt-2">
             <div class="container">
-                <div class="tab-vertical row gutter-lg">
+                <div class="tab-vertical row gutter-lg mt-4">
                     <ul class="nav nav-tabs mb-6" role="tablist">
                         <li class="nav-item">
                             <a href="{{ route('account') }}" class="nav-link{{ Route::is('account') ? ' active' : '' }}">Dashboard</a>

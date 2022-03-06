@@ -16,6 +16,8 @@ class HomeController extends Controller
         $banner = Banner::latest()->where('company_id', config('company.id'))->first();
         $benefitBanners = BenefitBanner::where('company_id', config('company.id'))->get();
 
+        $topSoldProducts = Product::with('thumbnail', 'category')->inRandomOrder()->limit(10)->get();
+
         $recentlyViewed = [];
         if (Auth::check()) {
             $recentlyViewed = Product::whereIn('id', function ($query) {
@@ -39,6 +41,7 @@ class HomeController extends Controller
             'recentlyViewed' => $recentlyViewed,
             'banner' => $banner,
             'benefitBanners' => $benefitBanners,
+            'topSoldProducts' => $topSoldProducts
         ]);
     }
 }

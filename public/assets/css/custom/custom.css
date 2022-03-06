@@ -105,6 +105,26 @@ footer .footer-newsletter button.wait .w-icon-long-arrow-right {
 .products .product-list .product-desc li::before {
   content: none;
 }
+.products .cart_quick_add .product-action {
+  z-index: 1;
+}
+.products .cart_quick_add .product-action .btn-cart {
+  border-width: 1px !important;
+  cursor: pointer;
+}
+.products .cart_quick_add .cart-message {
+  opacity: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 3px;
+  background: #799b5a;
+  width: fit-content;
+  padding: 0 15px;
+}
+.products .cart_quick_add .cart-message.error {
+  background-color: #6d1a17;
+}
 
 .product-page .widget-products .product-media img {
   width: 100px;

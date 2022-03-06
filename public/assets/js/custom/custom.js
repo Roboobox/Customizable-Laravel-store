@@ -52,19 +52,20 @@ $(function ( ) {
             dataType: "json",
             success : function (result){
                 if (result['status'] === 'success') {
-                    resultField.addClass('sub-success').text('Subscribed to newsletter!');
+                    resultField.addClass('sub-success').text('Subscribed to newsletter!').stop(true, true).fadeTo(200, 1);
+                    inputField.text('').val('');
                 } else if (result['error']) {
-                    resultField.addClass('sub-error').text(result['error']);
+                    resultField.addClass('sub-error').text(result['error']).stop(true, true).fadeTo(200, 1);
                     inputField.addClass('invalid');
                 } else {
-                    resultField.addClass('sub-error').text('Something went wrong, try again later!');
+                    resultField.addClass('sub-error').text('Something went wrong, try again later!').stop(true, true).fadeTo(200, 1);
                     inputField.addClass('invalid');
                 }
                 submitButton.removeClass('wait');
             },
             error: function()
             {
-                resultField.addClass('sub-error').text('Something went wrong, try again later!');
+                resultField.addClass('sub-error').text('Something went wrong, try again later!').stop(true, true).fadeTo(200, 1);
                 inputField.addClass('invalid');
                 submitButton.removeClass('wait');
             }
@@ -86,7 +87,6 @@ function initProductPage() {
 }
 
 function updateProductTotalPrice() {
-    console.log('here');
     let quantity = $('.product-page input.quantity');
     validateProductQuantity('.product-page input.quantity');
     let productPrice = $('.product-page form .product-qty-form').data('price');

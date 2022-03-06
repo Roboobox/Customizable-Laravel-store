@@ -1,3 +1,4 @@
+@props(['topSoldProducts'])
 <section class="category-section top-category bg-grey pt-10 pb-10 appear-animate">
     <div class="container pb-2">
         <h2 class="title justify-content-center pt-1 ls-normal mb-5">Top products sold this month</h2>
@@ -18,45 +19,21 @@
                 }
             }">
                 <div class="swiper-wrapper row cols-lg-6 cols-md-5 cols-sm-3 cols-2">
+                    @foreach($topSoldProducts as $product)
                     <div
                         class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
-                        <a href="{{ route('products') }}" class="category-media">
-                            <img src="{{ asset('assets/images/demos/demo1/categories/2-1.jpg') }}" alt="Category"
+                        <a href="{{ route('product', ['product' => $product]) }}" class="category-media">
+                            <img style="opacity: 0.5" src="{{ asset('assets/images/store/products/' . $product->thumbnail->photo_path) }}" alt="Category"
                                  width="130" height="130">
                         </a>
                         <div class="category-content">
-                            <h4 class="category-name">Placeholder</h4>
-                            <a href="{{ route('products') }}"
+                            <h4 class="category-name">{{ $product->name }}</h4>
+                            <a href="{{ route('product', ['product' => $product]) }}"
                                class="btn btn-primary btn-link btn-underline">Shop
                                 Now</a>
                         </div>
                     </div>
-                    <div
-                        class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
-                        <a href="{{ route('products') }}" class="category-media">
-                            <img src="{{ asset('assets/images/demos/demo1/categories/2-2.jpg') }}" alt="Category"
-                                 width="130" height="130">
-                        </a>
-                        <div class="category-content">
-                            <h4 class="category-name">Placeholder</h4>
-                            <a href="{{ route('products') }}"
-                               class="btn btn-primary btn-link btn-underline">Shop
-                                Now</a>
-                        </div>
-                    </div>
-                    <div
-                        class="swiper-slide category category-classic category-absolute overlay-zoom br-xs">
-                        <a href="{{ route('products') }}" class="category-media">
-                            <img src="{{ asset('assets/images/demos/demo1/categories/2-3.jpg') }}" alt="Category"
-                                 width="130" height="130">
-                        </a>
-                        <div class="category-content">
-                            <h4 class="category-name">Placeholder</h4>
-                            <a href="{{ route('products') }}"
-                               class="btn btn-primary btn-link btn-underline">Shop
-                                Now</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
