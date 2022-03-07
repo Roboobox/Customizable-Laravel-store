@@ -81,6 +81,13 @@ function updateCart() {
                     $('.cart-page .cart table.cart-table tbody').html(result['content']);
                     $('.cart-page .cart #cart_subtotal').text('$' + result['total']);
                     $('.cart-dropdown .cart-count').text(result['count']);
+
+                    if (!result['count'] || result['count'] < 1) {
+                        $('.cart-page .btn-checkout').attr('disabled', true)
+                    } else
+                    {
+                        $( '.cart-page .btn-checkout' ).attr( 'disabled', false )
+                    }
                     Wolmart.initQtyInput('.quantity');
                     initCartItemDelete();
                     initCartItemUpdate();

@@ -36,6 +36,19 @@ input.invalid, textarea.invalid {
     }
 }
 
+.btn:disabled, .btn[disabled] {
+    opacity: 0.8 !important;
+    cursor: default;
+    transition: none !important;
+}
+
+.btn-primary:disabled:hover, .btn-primary[disabled]:hover {
+    background-color: #336699;
+}
+
+.btn-dark:disabled:hover, .btn-dark[disabled]:hover {
+    background-color: #333;
+}
 
 header {
     .header-contact-us {

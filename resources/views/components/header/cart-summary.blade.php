@@ -46,5 +46,5 @@ $total = 0.00;
 
 <div class="cart-action">
     <a href="{{ route('cart') }}" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
-    <a href="{{ route('checkout') }}" class="btn btn-primary  btn-rounded">Checkout</a>
+    <a {{ !empty($cartItems) ? 'href=' . route('checkout') : 'disabled' }} class="btn btn-primary  btn-rounded">Checkout</a>
 </div>

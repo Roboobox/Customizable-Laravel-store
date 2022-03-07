@@ -45,12 +45,12 @@
                                     <h3 class="cart-title text-uppercase">Cart Total</h3>
                                     <div class="cart-subtotal d-flex align-items-center justify-content-between">
                                         <label class="ls-25">Subtotal</label>
-                                        <span id="cart_subtotal">100.00</span>
+                                        <span id="cart_subtotal">0.00</span>
                                     </div>
 
                                     <hr class="divider mb-6">
-                                    <a href="checkout.php"
-                                       class="btn btn-block btn-dark btn-icon-right btn-rounded  btn-checkout">
+                                    <a href="{{ route('checkout') }}"
+                                       class="btn btn-block btn-dark btn-icon-right btn-rounded btn-checkout">
                                         Proceed to checkout<i class="w-icon-long-arrow-right"></i></a>
                                 </div>
                             </div>
