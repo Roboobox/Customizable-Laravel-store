@@ -1,6 +1,6 @@
 @props(['product'])
 <div class="product-wrap">
-    <div class="product text-center">
+    <div class="product text-center product-grid">
         <figure class="product-media">
             <a href="{{ route('product', ['product' => $product->slug]) }}">
                 <img src="{{ asset('assets/images/store/products/' . $product->photos->first()->photo_path) }}" alt="Product" width="300"
@@ -32,6 +32,24 @@
                     ${{ $product->price }}
                 @endif
                 </div>
+            </div>
+            <div>
+                <form class="cart_quick_add" action="{{ route('cart-add') }}" method="post">
+                    <div class="d-flex align-items-center">
+                        <div class="product-qty-form mr-2" data-price="{{ $product->price }}">
+                            <div class="input-group">
+                                <input value="1" class="quantity form-control" name="quantity" type="number" min="1" max="10000000">
+                                <button type="button" class="quantity-plus w-icon-plus"></button>
+                                <button type="button" class="quantity-minus w-icon-minus"></button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="product" value="{{ $product->id }}">
+                        @csrf
+                        <button type="submit" class="btn-product btn-cart"
+                                title="Add to Cart"><i class="w-icon-cart"></i></button>
+                    </div>
+                    <div class="mt-1 cart-message">Message</div>
+                </form>
             </div>
         </div>
     </div>

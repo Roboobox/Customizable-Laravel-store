@@ -41,6 +41,17 @@ class SessionCart
         return false;
     }
 
+    public function clearCart(): bool
+    {
+        try
+        {
+            $this->cartItems = array();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
     public function changeCartItemQuantity(int $productId, int $newQuantity): bool {
         if (array_key_exists($productId, $this->cartItems)) {
             $this->cartItems[$productId]->changeQuantity($newQuantity);

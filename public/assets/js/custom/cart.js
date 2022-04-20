@@ -1,14 +1,17 @@
 // On document ready
 $(function ( ) {
     updateCart();
+    initClearCart();
 });
 
 function initCartItemDelete() {
     $('.cart-page .cart table.cart-table tbody .remove-cart-item').click(function ()
     {
+
         let recheck = confirm('Are you sure you want to delete this item?');
         if (recheck)
         {
+            $('.cart-page .loading-overlay').show();
             let $this = $( this );
             let url = $this.data( 'url' );
             $.ajax( {
@@ -22,10 +25,42 @@ function initCartItemDelete() {
                     {
                         updateCart();
                     }
+                    $('.cart-page .loading-overlay').hide();
                 },
                 error: function ()
                 {
+                    $('.cart-page .loading-overlay').show();
+                }
+            } );
+        }
+    });
+}
 
+function initClearCart() {
+    $('.cart').on('click', '.btn-clear', function ()
+    {
+        let recheck = confirm('Are you sure you want to delete all items in cart?');
+        if (recheck)
+        {
+            $('.cart-page .loading-overlay').show();
+            let $this = $( this );
+            let url = $this.data( 'url' );
+            $.ajax( {
+                url: url,
+                headers: { 'X-CSRF-TOKEN': $( 'meta[name="csrf-token"]' ).attr( 'content' ) },
+                method: 'POST',
+                dataType: "json",
+                success: function ( result )
+                {
+                    if ( result[ 'status' ] === 'success' )
+                    {
+                        updateCart();
+                    }
+                    $('.cart-page .loading-overlay').hide();
+                },
+                error: function ()
+                {
+                    $('.cart-page .loading-overlay').hide();
                 }
             } );
         }

@@ -52,6 +52,9 @@ Route::middleware(['guestOrVerified'])->group(function () {
     Route::post('/cart_remove/{product}', [CartItemController::class, 'destroy'])
         ->name("cart-remove");
 
+    Route::post('/cart_clear', [CartItemController::class, 'destroyAll'])
+        ->name("cart-clear");
+
     Route::post('/cart_update/{product}', [CartItemController::class, 'update'])
         ->name("cart-update");
 

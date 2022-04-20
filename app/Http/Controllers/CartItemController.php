@@ -137,4 +137,27 @@ class CartItemController extends Controller
         return response()->json(['status' => 'error']);
     }
 
+    public function destroyAll(Request $request) {
+        if (Auth::check()) {
+            $deleteStmt = CartItem::where('cart_id', function ($query) {
+                $query->select('id')->from('carts')->where('user_id', Auth::user()->id)->where('company_id', config('company.id'));
+            })->delete();
+
+            if ($deleteStmt)
+            {
+                return response()->json( [ 'status' => 'success' ] );
+            }
+        } else {
+            if (session()->has('cart')) {
+                $cart = session('cart');
+                if ($cart->clearCart()) {
+                    session()->put('cart', $cart);
+                    return response()->json( [ 'status' => 'success' ] );
+                }
+            }
+        }
+
+        return response()->json(['status' => 'error']);
+    }
+
 }
