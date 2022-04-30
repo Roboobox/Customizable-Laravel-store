@@ -27,6 +27,7 @@
         <script src="{{ asset('assets/vendor/jquery.countdown/jquery.countdown.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/zoom/jquery.zoom.js') }}"></script>
+        <script src="{{ asset('assets/vendor/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
         <script src="{{ asset('assets/js/custom/products.js?v=1') }}"></script>
     </x-slot>
 

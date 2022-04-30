@@ -19,6 +19,10 @@ input.invalid, textarea.invalid {
   display: block;
 }
 
+.text-danger {
+  color: #d25d69 !important;
+}
+
 .loading-overlay {
   display: none;
   width: 100%;
@@ -167,6 +171,26 @@ footer .footer-newsletter button.wait .w-icon-long-arrow-right {
 }
 .products .cart_quick_add .cart-message.error {
   background-color: #6d1a17;
+}
+
+.my-account #account_form_container .form-control {
+  margin-bottom: 0;
+}
+.my-account #account_form_container .form-group {
+  margin-bottom: 2rem;
+}
+.my-account .badge {
+  font-weight: normal !important;
+  background-color: #336699 !important;
+  display: inline-block;
+  padding: 0.25em 0.4em;
+  font-size: 80%;
+  color: white;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
 }
 
 .product-page .widget-products .product-media img {

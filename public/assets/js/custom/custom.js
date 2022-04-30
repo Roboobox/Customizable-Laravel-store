@@ -72,9 +72,42 @@ $(function ( ) {
         });
     });
 
-    // Wolmart.$body.on('click', '#sticky-footer-search', function (e) {
-    //     console.log('test');
-    // });
+    Wolmart.$body.on('click', '.btn-account-close', function (e) {
+        e.preventDefault();
+        clearAddressForm();
+        $('#account_form_container').slideUp();
+    });
+
+    Wolmart.$body.on('click', '.btn-add-address', function (e) {
+        e.preventDefault();
+        clearAddressForm();
+        $('#account_form_container form').attr('action', $(this).data('url'));
+        $('#account_form_container').slideDown();
+    });
+
+    Wolmart.$body.on('click', '.btn-edit-address', function (e) {
+        e.preventDefault();
+        const $this = $(this);
+        $('#account_form_container form').attr('action', $this.data('url'));
+        $('#account_form_container #address').val($this.data('address'));
+        $('#account_form_container #city').val($this.data('city'));
+        $('#account_form_container #country').val($this.data('country'));
+        $('#account_form_container #postcode').val($this.data('postcode'));
+        $('#account_form_container #phone_number').val($this.data('mobile'));
+        $('#account_form_container #edit_id').val($this.data('id'));
+        $('.ecommerce-address .badge[data-id="'+$this.data("id")+'"]').show();
+        $('#account_form_container').slideDown()[0].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center'
+        });
+    });
+
+    Wolmart.$body.on('submit', '.address-delete-form', function (e) {
+        if(!confirm("Are you sure you want to delete this address?")){
+            e.preventDefault();
+        }
+    });
 
     initProductPage();
 
@@ -84,6 +117,12 @@ function initProductPage() {
     let productPageElem = $('.product-page');
     productPageElem.on('click touchend', '.quantity-plus, .quantity-minus', updateProductTotalPrice);
     productPageElem.on('change', 'input.quantity', updateProductTotalPrice);
+}
+
+function clearAddressForm() {
+    $('#account_form_container form input').val('').removeClass('invalid');
+    $('.ecommerce-address .badge').hide();
+    $('#account_form_container form .invalid-feedback').remove();
 }
 
 function updateProductTotalPrice() {

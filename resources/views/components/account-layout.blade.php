@@ -18,9 +18,6 @@
                             <a href="{{ route('orders') }}" class="nav-link{{ Route::is('orders') ? ' active' : '' }}">Orders</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('downloads') }}" class="nav-link{{ Route::is('downloads') ? ' active' : '' }}">Downloads</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('addresses') }}" class="nav-link{{ Route::is('addresses') ? ' active' : '' }}">Addresses</a>
                         </li>
                         <li class="nav-item">

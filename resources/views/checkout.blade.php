@@ -1,4 +1,4 @@
-<x-layout body-class="checkout">
+<x-layout body-class="checkout-page">
 
     <x-slot name="customCss">
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.min.css') }}">
@@ -8,7 +8,7 @@
         <x-checkout-breadcrumbs></x-checkout-breadcrumbs>
 
 
-        <div class="page-content">
+        <div class="page-content checkout">
             <div class="container">
                 <div class="login-toggle">
                     Returning customer? <a href="#"

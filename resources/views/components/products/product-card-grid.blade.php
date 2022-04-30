@@ -6,6 +6,9 @@
                 <img src="{{ asset('assets/images/store/products/' . $product->photos->first()->photo_path) }}" alt="Product" width="300"
                      height="338" />
             </a>
+            <div class="product-action-horizontal">
+                <a href="#" data-id="{{ $product->id }}" data-url="{{ route('ajax-product-quick') }}"  class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a>
+            </div>
             @if($product->discount)
                 <div class="product-countdown-container">
                     <div class="product-countdown countdown-compact" data-until="{{  date('Y', strtotime($product->discount->ending_at)) }}, {{  date('m', strtotime($product->discount->ending_at)) }}, {{  date('d', strtotime($product->discount->ending_at)) }}"

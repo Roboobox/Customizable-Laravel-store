@@ -15,7 +15,7 @@
                         <div class="col-lg-8 pr-lg-4 mb-6">
                             <table class="shop-table cart-table" data-url="{{ route('cart-get') }}">
                                 <thead>
-                                <tr>
+                                <tr class="text-left">
                                     <th class="product-name"><span>Product</span></th>
                                     <th></th>
                                     <th class="product-price"><span>Price</span></th>

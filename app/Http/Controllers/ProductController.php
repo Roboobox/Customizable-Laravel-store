@@ -8,6 +8,7 @@ use App\Models\ProductSpecification;
 use App\Models\ViewHistory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\View\ComponentAttributeBag;
 use Illuminate\View\View;
 
@@ -49,6 +50,30 @@ class ProductController extends Controller
             'product' => $product->load(['photos', 'specifications','specifications.label', 'category'] ),
             'moreProducts' => Product::whereNotIn('id', [$product->id])->where('company_id', config('company.id'))->inRandomOrder()->limit(6)
                 ->with(['photos:product_id,photo_path'])->get(),
+        ]);
+    }
+
+    public function getModal(Request $request) {
+        $rules = array(
+            'product' => ['required', Rule::exists('products', 'id')],
+        );
+        $validator = \Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error'
+            ]);
+        }
+
+        $product = Product::with(['photos', 'specifications','specifications.label', 'category'] )->find($request->input('product'));
+
+        $view = view('components.quickview-content', [
+            'product' => $product,
+        ])->render();
+
+        return response()->json([
+            'status' => 'success',
+            'content' => $view
         ]);
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ContactUsController;
@@ -39,6 +40,9 @@ Route::middleware(['guestOrVerified'])->group(function () {
 
     Route::post('ajax/products', [ProductController::class, 'search'])
         ->name("ajax-products");
+
+    Route::post('ajax/product-quick', [ProductController::class, 'getModal'])
+        ->name("ajax-product-quick");
 
     Route::post('/cart_add', [CartItemController::class, 'store'])
         ->name("cart-add");
@@ -106,9 +110,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('account.downloads');
     })->name("downloads");
 
-    Route::get('/account/addresses', function () {
-        return view('account.addresses');
-    })->name("addresses");
+    Route::get('/account/addresses', [AddressController::class, 'index'])->name("addresses");
+    Route::post('/account/addresses/create', [AddressController::class, 'create'])->name("addresses-create");
+    Route::post('/account/addresses/edit', [AddressController::class, 'update'])->name("addresses-edit");
+    Route::post('/account/addresses/delete', [AddressController::class, 'destroy'])->name("addresses-delete");
 
     Route::get('/account/details', [AccountDetailController::class, 'create'])
         ->name("account-details");

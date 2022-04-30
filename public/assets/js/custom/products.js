@@ -80,6 +80,37 @@ function initEvents() {
     {
         validateProductQuantity('.cart_quick_add input.quantity');
     });
+
+    shopContentElem.on('click', '.btn-quickview', function (event)
+    {
+        event.preventDefault();
+        let $this = $(this);
+        openProductModal($this.data('url'), $this.data('id'));
+        Wolmart.initProductSinglePage();
+
+    });
+}
+
+function openProductModal(url, productId)
+{
+    $.ajax({
+        url : url,
+        method: 'POST',
+        dataType: "json",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        data: { product: productId },
+        success : function (result){
+            if (result['status'] !== undefined && result['status'] === 'success') {
+                $('.product-popup').html(result['content']);
+            } else {
+                console.log('error');
+            }
+        },
+        error: function()
+        {
+            console.log('error');
+        }
+    });
 }
 
 function showProductsLoading() {
